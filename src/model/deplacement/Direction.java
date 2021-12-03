@@ -1,9 +1,17 @@
-package model;
+package model.deplacement;
 
 public class Direction {
     private int xDir;
     private int yDir;
 
+    public Direction(int xDir, int yDir){
+        if (xDir < -1 || xDir > 1 || yDir < -1 || yDir > 1)
+            throw (new IllegalArgumentException());
+        else{
+            this.xDir = xDir;
+            this.yDir = yDir;
+        }
+    }
 
     public int getxDir() {
         return xDir;

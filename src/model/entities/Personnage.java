@@ -1,6 +1,8 @@
-package model;
+package model.entities;
 
-public class Personnage extends Entite{
+import model.entities.Entite;
+
+public abstract class Personnage extends Entite { //point d'extensabilité
     private int atkPnt;
     private int magPnt;
     private int maxHP;
@@ -9,7 +11,8 @@ public class Personnage extends Entite{
     private int currentMana;
     private int speed;
 
-    public Personnage(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed) {
+    public Personnage(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, int id) {
+        super(xsize,ysize,xpos,ypos, id);
         this.atkPnt = atkPnt;
         this.magPnt = magPnt;
         this.maxHP = maxHP;
@@ -73,5 +76,9 @@ public class Personnage extends Entite{
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public String toString(){
+        return "atk : "+atkPnt+", mag : "+magPnt+", max hp : "+maxHP+", max mana : "+maxMana+", current hp : "+currentHP+", current mana : "+currentMana+", speed : "+speed;
     }
 }
