@@ -1,2 +1,5 @@
-package model;public class Props {
+package model;
+
+public class Props extends Entite{
+
 }
