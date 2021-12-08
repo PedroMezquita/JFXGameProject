@@ -9,7 +9,7 @@ public abstract class Ennemi extends Personnage { //classe abstraite pour faire 
     private LinkedList<Direction> pattern = new LinkedList<>();
     private int isMoving = 0;
 
-    public Ennemi(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed) { //constructeur pour pouvoir mieux instancier les prochaines classes
-        super(atkPnt, magPnt, maxHP, maxMana, currentHP, currentMana, speed);
+    public Ennemi(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, int id) {
+        super(atkPnt, magPnt, maxHP, maxMana, currentHP, currentMana, speed, xsize, ysize, xpos, ypos, id);
     }
 }
