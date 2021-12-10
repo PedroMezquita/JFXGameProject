@@ -12,4 +12,13 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         this.position = new Position(xpos, ypos);
         this.id = id;
     }
+
+    public Position getPos(){
+        return position;
+    }
+
+    public void setPosition(int xPos, int yPos){
+        position.setxPos(xPos);
+        position.setyPos(yPos);
+    }
 }

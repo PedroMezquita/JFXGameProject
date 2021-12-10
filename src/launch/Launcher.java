@@ -25,18 +25,25 @@ public class Launcher extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
         Parent root = FXMLLoader.load(this.getClass().getResource("/Background1.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        DeplacerCercle deplaceCer = new DeplacerCercle();//On garde une direction (a la base elle est nulle
+        DeplacerJoueur deplace = new DeplacerJoueur();//On garde une direction (a la base elle est nulle
         Direction dir = new Direction(0,0);
+        Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",1,1,0,0,0);
+
+
 
         scene.setOnKeyPressed(event -> {
             String codeString = event.getCode().toString();
             dir.detectDirection(codeString); //On appelle a la methode qui va changer la direction lors que une touche est utilisé
+            deplace.deplacer(joueur,dir);
+            //System.out.println("position x : "+joueur.getPos().getxPos()+", position y : "+joueur.getPos().getyPos());
+            root.setTranslateX(joueur.getPos().getxPos());
+            root.setTranslateY(joueur.getPos().getyPos()); //déplace l'entiereté du parent, je sais pas comment appeler le code behind pour toucher uniquement au cercle bleu
         });
 
 
