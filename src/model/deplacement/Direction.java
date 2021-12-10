@@ -28,6 +28,34 @@ public class Direction {
     public void setyDir(int yDir) {
         this.yDir = yDir;
     }
+
+    public void detectDirection(String codeString){
+        switch (codeString){
+            case "UP":
+                setyDir(1);
+                break;
+
+            case "DOWN":
+                setyDir(-1);
+                break;
+
+            case "RIGHT":
+                setxDir(1);
+                break;
+
+            case "LEFT":
+                setxDir(-1);
+                break;
+            default:
+                System.out.println(codeString);
+        }
+        //A CHANGER
+
+
+
+    }
+
+
 }
 /*
 Nouvelle classe
