@@ -1,11 +1,14 @@
 package launch;
 
+import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.deplacement.Collisioneur;
 import model.deplacement.CollisioneurBase;
@@ -19,32 +22,32 @@ import vue.Background1;
 
 import model.deplacement.*;
 
+
 public class Launcher extends Application{
 
     //les trucs abstract servent à faire les points d'extensibilité pour que le code soit SOLID comme on l'apprend en cours, parce que c'est demandé.
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
         Parent root = FXMLLoader.load(this.getClass().getResource("/Background1.fxml"));
         Scene scene = new Scene(root);
-
         primaryStage.setScene(scene);
         primaryStage.show();
         DeplacerJoueur deplace = new DeplacerJoueur();//On garde une direction (a la base elle est nulle
         Direction dir = new Direction(0,0);
         Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",1,1,0,0,0);
-
-
+        Circle cercle = (Circle) root.lookup("#cercle");
 
         scene.setOnKeyPressed(event -> {
             String codeString = event.getCode().toString();
             dir.detectDirection(codeString); //On appelle a la methode qui va changer la direction lors que une touche est utilisé
             deplace.deplacer(joueur,dir);
             //System.out.println("position x : "+joueur.getPos().getxPos()+", position y : "+joueur.getPos().getyPos());
-            root.setTranslateX(joueur.getPos().getxPos());
-            root.setTranslateY(joueur.getPos().getyPos()); //déplace l'entiereté du parent, je sais pas comment appeler le code behind pour toucher uniquement au cercle bleu
-        });
+            //root.setTranslateX(joueur.getPos().getxPos());
+            //root.setTranslateY(joueur.getPos().getyPos()); //déplace l'entiereté du parent, je sais pas comment appeler le code behind pour toucher uniquement au cercle bleu
+            cercle.setTranslateX(joueur.getPos().getxPos());
+            cercle.setTranslateY(joueur.getPos().getyPos());
+            });
 
 
 
