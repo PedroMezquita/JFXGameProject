@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<?import javafx.scene.layout.StackPane?>
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.Background1">
-   <children>
-      <Circle fx:id="cercle" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" id="cercle"/>
-      <Circle fx:id="reference" fill="red" radius="10"/>
-   </children>
-</StackPane>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.Background1">
+   <center>
+      <Circle id="cercle" fx:id="cercle" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Circle fx:id="reference" fill="red" radius="16.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Rectangle id="obst1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" stroke="BLACK" strokeType="INSIDE" width="30.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Rectangle id="obst2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" stroke="BLACK" strokeType="INSIDE" width="399.0" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <Rectangle id="obst3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" stroke="BLACK" strokeType="INSIDE" width="200.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

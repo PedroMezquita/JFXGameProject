@@ -6004,11 +6004,30 @@
 									"model": {
 										"$ref": "AAAAAAF9mWVtmyK5XUk="
 									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF9x2RVqlM8VxY=",
+											"_parent": {
+												"$ref": "AAAAAAF9mWVtmyLBtak="
+											},
+											"model": {
+												"$ref": "AAAAAAF9x2RVc1MqVZs="
+											},
+											"font": "Arial;13;0",
+											"left": 2341,
+											"top": 1030,
+											"width": 376.111328125,
+											"height": 13,
+											"text": "+obstacle ArrayList",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 2336,
 									"top": 1025,
 									"width": 386.111328125,
-									"height": 10
+									"height": 23
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -6031,18 +6050,35 @@
 											},
 											"font": "Arial;13;0",
 											"left": 2341,
-											"top": 1040,
+											"top": 1053,
 											"width": 376.111328125,
 											"height": 13,
 											"text": "+testCollision(Personnage pers, Direction dir, Map map): boolean",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF9x2UyT1pMDHc=",
+											"_parent": {
+												"$ref": "AAAAAAF9mWVtmyLCv1g="
+											},
+											"model": {
+												"$ref": "AAAAAAF9x2UyKVo6kB4="
+											},
+											"font": "Arial;13;0",
+											"left": 2341,
+											"top": 1068,
+											"width": 376.111328125,
+											"height": 13,
+											"text": "+ajoutObstacle(Shape obst)",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 2336,
-									"top": 1035,
+									"top": 1048,
 									"width": 386.111328125,
-									"height": 23
+									"height": 38
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -6085,7 +6121,7 @@
 							"left": 2336,
 							"top": 1000,
 							"width": 386.111328125,
-							"height": 81,
+							"height": 86,
 							"nameCompartment": {
 								"$ref": "AAAAAAF9mWVtmyK8Of4="
 							},
@@ -6124,7 +6160,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2270,
-									"top": 1041,
+									"top": 1042,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -6145,7 +6181,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 2270,
-									"top": 1056,
+									"top": 1057,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -6166,7 +6202,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2271,
-									"top": 1012,
+									"top": 1013,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -6184,7 +6220,7 @@
 								"$ref": "AAAAAAF9mWVtmyK7sj4="
 							},
 							"lineStyle": 1,
-							"points": "2335:1035;2207:1032",
+							"points": "2335:1036;2207:1033",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF9mWe44Cq5/no="
@@ -13266,6 +13302,16 @@
 									}
 								}
 							],
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAF9x2RVc1MqVZs=",
+									"_parent": {
+										"$ref": "AAAAAAF9mWVtmyK5XUk="
+									},
+									"name": "obstacle ArrayList"
+								}
+							],
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -13310,6 +13356,25 @@
 											},
 											"type": "boolean",
 											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAF9x2UyKVo6kB4=",
+									"_parent": {
+										"$ref": "AAAAAAF9mWVtmyK5XUk="
+									},
+									"name": "ajoutObstacle",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAF9x2V/AluqCAk=",
+											"_parent": {
+												"$ref": "AAAAAAF9x2UyKVo6kB4="
+											},
+											"name": "Shape obst",
+											"type": ""
 										}
 									]
 								}

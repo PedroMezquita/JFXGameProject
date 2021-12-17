@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Java" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="launch.Launcher" />
+    <module name="mezquita_duteyrat_javafx" />
+    <option name="VM_PARAMETERS" value="--module-path /usr/share/openjfx/lib --add-modules javafx.base,javafx.controls,javafx.fxml" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

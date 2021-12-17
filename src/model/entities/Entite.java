@@ -21,4 +21,5 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         position.setxPos(xPos);
         position.setyPos(yPos);
     }
+
 }
