@@ -3,11 +3,26 @@ package model.deplacement;
 import model.entities.Personnage;
 
 public class DeplacerJoueur implements Deplaceur {
+
+    Collisioneur col;
+
+    public DeplacerJoueur(Collisioneur col) {
+        this.col = col;
+    }
+
     @Override
     public void deplacer(Personnage pers, Direction dir) {
-        int verticalMvmt = dir.getxDir()*pers.getSpeed();
-        int horizontalMvmt = dir.getyDir()*pers.getSpeed();
-        pers.setPosition(pers.getPos().getxPos()+verticalMvmt,pers.getPos().getyPos()+horizontalMvmt);
+        if (col.testCollision(pers, dir)) {
+            int verticalMvmt = dir.getxDir() * pers.getSpeed();
+            int horizontalMvmt = dir.getyDir() * pers.getSpeed();
+            pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);
+        }
+        else {
+            int tmpSpeed = pers.getSpeed();
+            //récursivité qui permet de se coller au mur histoire de rendre le déplacement moins galère pour le joueur
+            pers.setSpeed(tmpSpeed-1);
+            deplacer(pers,dir);
+            pers.setSpeed(tmpSpeed);
+        }
     }
-    //Aussi statique, on ne pourra pas instancier un deplaceur a chaque fois qu'on veut jouer, en tout cas pseudocode a revoir (a la place d'instancier position a chaque fois vaut mieux juste modifier les valeurs)
 }

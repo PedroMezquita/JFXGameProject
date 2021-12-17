@@ -14,11 +14,12 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import model.Loop;
 import model.deplacement.Collisioneur;
-import model.deplacement.CollisioneurBase;
+import model.deplacement.CollisioneurCarre;
 import model.deplacement.Direction;
 import model.entities.Entite;
 import model.entities.Guerrier;
 import model.entities.Personnage;
+import model.entities.Props;
 import model.maps.Map;
 import model.maps.TestMap;
 import vue.Background1;
@@ -41,30 +42,44 @@ public class Launcher extends Application{
         primaryStage.show();
 
 
-        //Instances des classes necessaires
-        DeplacerJoueur deplace = new DeplacerJoueur();//On garde une direction (a la base elle est nulle
-        Direction dir = new Direction(0,0);
-        Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",1,1,0,0,0);
-        CollisioneurBase colision = new CollisioneurBase();
 
+
+        /*
         Loop beep = new Loop();
         beep.start();
-
+        */
 
 
         //Detection et ajout du joueur (cercle)
-        Circle cercle = (Circle) root.lookup("#cercle");
+        Rectangle cercle = (Rectangle) root.lookup("#cercle");
 
 
         //Detection et ajout des obstacles dans la liste obstacles
         Rectangle obst1 = (Rectangle) root.lookup("#obst1");
-        Rectangle obst2 = (Rectangle) root.lookup("#obst2");
-        Rectangle obst3 = (Rectangle) root.lookup("#obst3");
-        colision.ajoutObstacle(obst1);
-        colision.ajoutObstacle(obst2);
-        colision.ajoutObstacle(obst3);
+        Props obstacle1 = new Props(50,15,150,47,1);
+        obst1.setHeight(obstacle1.getySize()); //hauteur = y, largeur = x
+        obst1.setWidth(obstacle1.getxSize());
+        obst1.setX(obstacle1.getPos().getxPos());
+        obst1.setY(obstacle1.getPos().getyPos());
 
+        Rectangle reference = (Rectangle) root.lookup("#milieuJoueur");
+        reference.setHeight(3); //hauteur = y, largeur = x
+        reference.setWidth(3);
+        reference.setX(obstacle1.getPos().getxPos()+obstacle1.getxSize());
+        reference.setY(obstacle1.getPos().getyPos()+obstacle1.getySize());
 
+        //Instances des classes necessaires
+
+        Map map = new TestMap();
+        map.addEntity(obstacle1);
+        Direction dir = new Direction(0,0);
+        Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",21,21,0,0,0);
+        cercle.setHeight(joueur.getySize());
+        cercle.setWidth(joueur.getxSize());
+        cercle.setX(joueur.getPos().getxPos());
+        cercle.setY(joueur.getPos().getyPos());
+        map.addEntity(joueur);
+        DeplacerJoueur deplace = new DeplacerJoueur(new CollisioneurCarre(map));//On garde une direction (a la base elle est nulle
 
 
         //Detection des touches (methode lambda qui va gerer le deplacement et l'interaction avec le joueur)
@@ -72,16 +87,13 @@ public class Launcher extends Application{
             String codeString = event.getCode().toString();
             dir.detectDirection(codeString); //On appelle a la methode qui va changer la direction lors que une touche est utilisé
 
-            boolean col = colision.testCollisionsCercle(cercle, joueur); //ça ne marche pas, je vais faire le beep je pense
-
-            if (!col){
+            //boolean col = colision.testCollisionsCercle(cercle, joueur); //ça ne marche pas, je vais faire le beep je pense
                 deplace.deplacer(joueur,dir);
                 //System.out.println("position x : "+joueur.getPos().getxPos()+", position y : "+joueur.getPos().getyPos());
                 //root.setTranslateX(joueur.getPos().getxPos());
                 //root.setTranslateY(joueur.getPos().getyPos()); //déplace l'entiereté du parent, je sais pas comment appeler le code behind pour toucher uniquement au cercle bleu
-                cercle.setTranslateX(joueur.getPos().getxPos());
-                cercle.setTranslateY(joueur.getPos().getyPos());
-            }
+                cercle.setX(joueur.getPos().getxPos());
+                cercle.setY(joueur.getPos().getyPos());
             });
 
 

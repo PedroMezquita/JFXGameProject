@@ -1,7 +1,7 @@
 package model.entities;
 
 public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
-    private int xSize;
+    private int xSize; //les tailles sont à diviser par deux car on part du milieu de l'entité donc on fera -taille et + taille
     private int ySize;
     private Position position;  //attribut à garder pour la map et les props
     private int id;
@@ -22,4 +22,17 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         position.setyPos(yPos);
     }
 
+    public int getySize () {
+        return ySize;
+    }
+
+    public int getxSize () {
+        return xSize;
+    }
+
+    public int getId () {
+        return id;
+    }
+
 }
+

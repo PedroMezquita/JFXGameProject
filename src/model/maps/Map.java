@@ -11,6 +11,10 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
         allEntities.add(entity);
     }
 
+    public LinkedList<Entite> getAllEntities () {
+        return allEntities;
+    }
+
     public String toString (){
         return allEntities.toString();
     }
