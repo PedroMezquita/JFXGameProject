@@ -23,6 +23,7 @@ public class CollisioneurCarre implements Collisioneur{
 
     //On gère les collisions avec la position minimum du props et la maximum (position + taille) dans les deux axes.
     //On fait la même en prenant le déplacement en compte pour le personnage
+
     @Override
     public boolean testCollision(Personnage pers, Direction dir) {
         //calcul de la hitbox du personnage
@@ -41,6 +42,8 @@ public class CollisioneurCarre implements Collisioneur{
         }
         return true;
     }
+
+
 
     /*
     public void ajoutObstacle(Shape obst){
