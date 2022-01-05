@@ -2,14 +2,12 @@ package vue;
 
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import model.deplacement.Direction;
 import model.entities.Position;
 
 public class Background1 {
-
-    @FXML
-    private Circle cercle;
-
+/*
     @FXML
     public Circle getCercle(){
         return cercle;
@@ -20,5 +18,5 @@ public class Background1 {
         cercle.setTranslateX(pos.getxPos());
         cercle.setTranslateY(pos.getyPos());
     }
-
+*/
 }
