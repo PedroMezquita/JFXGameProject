@@ -25,7 +25,7 @@ public class CollisioneurCarre implements Collisioneur{
     //On fait la même en prenant le déplacement en compte pour le personnage
 
     @Override
-    public boolean testCollision(Personnage pers, Direction dir) {
+    public int testCollision(Personnage pers, Direction dir) {
         //calcul de la hitbox du personnage
         int persMinY = pers.getPos().getyPos()+(dir.getyDir()*pers.getSpeed()), persMaxY = pers.getPos().getyPos()+pers.getySize()+(dir.getyDir()*pers.getSpeed()), persMinX = pers.getPos().getxPos()+(dir.getxDir()*pers.getSpeed()), persMaxX = pers.getPos().getxPos()+pers.getxSize()+(dir.getxDir()*pers.getSpeed());
         //pour chaque entite de la map
@@ -36,11 +36,11 @@ public class CollisioneurCarre implements Collisioneur{
             if (((persMinY >= minY && persMinY <= maxY) || (persMaxY >= minY && persMaxY <= maxY) || (persMaxY >= maxY && persMinY <= minY)) && entity.getId() != pers.getId()){
                 //la même avec le X
                 if (((persMinX >= minX && persMinX <= maxX) || (persMaxX >= minX && persMaxX <= maxX) || (persMaxX >= maxX && persMinX <= minX)) && entity.getId() != pers.getId()){
-                    return false;
+                    return 0;
                 }
             }
         }
-        return true;
+        return 1;
     }
 
 

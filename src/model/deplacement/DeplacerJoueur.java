@@ -12,7 +12,7 @@ public class DeplacerJoueur implements Deplaceur {
 
     @Override
     public void deplacer(Personnage pers, Direction dir) {
-        if (col.testCollision(pers, dir)) {
+        if (col.testCollision(pers, dir) == 1) {
             int verticalMvmt = dir.getxDir() * pers.getSpeed();
             int horizontalMvmt = dir.getyDir() * pers.getSpeed();
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);

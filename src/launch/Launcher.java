@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+import model.BeepObserver;
 import model.Loop;
 import model.deplacement.Collisioneur;
 import model.deplacement.CollisioneurCarre;
@@ -44,10 +45,11 @@ public class Launcher extends Application{
 
 
 
-        /*
-        Loop beep = new Loop();
+
+        Loop beep = new Loop(1);
+        beep.attacher(new BeepObserver());
         beep.start();
-        */
+
 
 
         //Detection et ajout du joueur (cercle)
