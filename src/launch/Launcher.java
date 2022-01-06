@@ -46,6 +46,12 @@ public class Launcher extends Application{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        /*
+        Launcher.getStage().getScene().setOnKeyPressed(event -> {
+            String codeString = event.getCode().toString();
+
+        });
+         */
         manager = new Manager();
 
 

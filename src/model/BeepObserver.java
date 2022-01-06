@@ -7,7 +7,7 @@ public class BeepObserver implements Observer{
     @Override
     public void update () {
         Platform.runLater(()->{
-            //Launcher.
+            System.out.println("reçu");
         });
     }
 }

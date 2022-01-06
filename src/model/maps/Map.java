@@ -2,16 +2,17 @@ package model.maps;
 
 import model.entities.Entite;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ?
-    private LinkedList<Entite> allEntities = new LinkedList<>();//elle contient la liste des entités
+    private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
 
     public void addEntity (Entite entity){
         allEntities.add(entity);
     }
 
-    public LinkedList<Entite> getAllEntities () {
+    public ArrayList<Entite> getAllEntities () {
         return allEntities;
     }
 

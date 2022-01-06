@@ -11,19 +11,23 @@ import model.maps.Map;
 import model.maps.TestMap;
 import launch.Launcher;
 import data.Stub;
+import vue.Background1;
 
 public class Manager {
 
     public Manager (){
-        Loop beep = new Loop(1);
+        Loop beep = new Loop(1000);
         beep.attacher(new BeepObserver());
         beep.start();
 
         Map map = new Stub().load();
+        new Background1().updateMap(map);
+
+        //DeplacerJoueur deplace = new DeplacerJoueur(new CollisioneurCarre(map));//On garde une direction (a la base elle est nulle
 
         //à partir de là, à mettre dans le code behind
         /*
-        Rectangle cercle = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#cercle");
+        Rectangle rec = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#cercle");
 
         cercle.setHeight(joueur.getySize());
         cercle.setWidth(joueur.getxSize());
@@ -40,22 +44,11 @@ public class Manager {
 
         //Instances des classes necessaires
 
-        DeplacerJoueur deplace = new DeplacerJoueur(new CollisioneurCarre(map));//On garde une direction (a la base elle est nulle
+
 
 
         //Detection des touches (methode lambda qui va gerer le deplacement et l'interaction avec le joueur)
-        Launcher.getStage().getScene().setOnKeyPressed(event -> {
-            String codeString = event.getCode().toString();
-            dir.detectDirection(codeString); //On appelle a la methode qui va changer la direction lors que une touche est utilisé
 
-            //boolean col = colision.testCollisionsCercle(cercle, joueur); //ça ne marche pas, je vais faire le beep je pense
-            deplace.deplacer(joueur,dir);
-            //System.out.println("position x : "+joueur.getPos().getxPos()+", position y : "+joueur.getPos().getyPos());
-            //root.setTranslateX(joueur.getPos().getxPos());
-            //root.setTranslateY(joueur.getPos().getyPos()); //déplace l'entiereté du parent, je sais pas comment appeler le code behind pour toucher uniquement au cercle bleu
-            cercle.setX(joueur.getPos().getxPos());
-            cercle.setY(joueur.getPos().getyPos());
-        });
 
          */
     }
