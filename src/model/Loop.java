@@ -20,6 +20,7 @@ public class Loop extends Thread{
         listeObs.remove(obs);
     }
 
+
     @Override
     public void run() {
         while(true) { //ça marche a moitie, on peux faire mieux mais pour l'instant ça fait un peu la tache

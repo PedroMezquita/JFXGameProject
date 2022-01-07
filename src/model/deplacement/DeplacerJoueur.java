@@ -1,5 +1,6 @@
 package model.deplacement;
 
+import model.Observer;
 import model.entities.Personnage;
 
 public class DeplacerJoueur implements Deplaceur {
@@ -25,4 +26,7 @@ public class DeplacerJoueur implements Deplaceur {
             pers.setSpeed(tmpSpeed);
         }
     }
+
+
+
 }

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
+
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.Background1">
+   <top>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" id="murTop" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" width="651.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" id="murBot" fill="DODGERBLUE" height="34.0" stroke="BLACK" strokeType="INSIDE" width="646.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

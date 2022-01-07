@@ -20,12 +20,15 @@ public class Manager {
         beep.attacher(new BeepObserver());
         beep.start();
 
+
         Map map = new Stub().load();
         new Background1().updateMap(map);
 
         //DeplacerJoueur deplace = new DeplacerJoueur(new CollisioneurCarre(map));//On garde une direction (a la base elle est nulle
 
         //à partir de là, à mettre dans le code behind
+
+
         /*
         Rectangle rec = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#cercle");
 
@@ -42,12 +45,16 @@ public class Manager {
         obst1.setX(obstacle1.getPos().getxPos());
         obst1.setY(obstacle1.getPos().getyPos());
 
+
+
         //Instances des classes necessaires
 
 
 
 
         //Detection des touches (methode lambda qui va gerer le deplacement et l'interaction avec le joueur)
+
+
 
 
          */

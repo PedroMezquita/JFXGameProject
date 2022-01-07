@@ -4,5 +4,5 @@ import model.deplacement.Direction;
 import model.entities.Personnage;
 
 public interface attacker {
-    public void deplacer(Personnage pers, Direction dir); //attaque à rajouter quand fait
+    public void attack(Personnage pers, Direction dir, Attack atk); //attaque à rajouter quand fait
 }
