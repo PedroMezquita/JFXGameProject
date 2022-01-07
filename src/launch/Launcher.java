@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class Launcher extends Application{
 
     private static Stage stage;
-    private static Manager manager;
+    private static Manager manager = new Manager();
 
     //les trucs abstract servent à faire les points d'extensibilité pour que le code soit SOLID comme on l'apprend en cours, parce que c'est demandé.
     @Override
@@ -46,25 +46,7 @@ public class Launcher extends Application{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        /*
-        Launcher.getStage().getScene().setOnKeyPressed(event -> {
-            String codeString = event.getCode().toString();
-
-        });
-         */
-        manager = new Manager();
-
-
-
-        /*
-        Personnage entity = new Guerrier(1, 1, 10, 10, 10, 10, 1, "Arnold",3,3,20,20, 1);
-        Map map = new TestMap();
-        map.addEntity(entity);
-        System.out.println(map.toString());
-        Collisioneur coll = new CollisioneurBase();
-        System.out.println(coll.testCollision(entity, new Direction(1,1), map));
-*/
-
+        scene.setOnKeyPressed(keyEvent -> {manager.addTouche(keyEvent.getCode());});
     }
 
     public static Manager getManager() {

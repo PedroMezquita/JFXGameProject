@@ -1,62 +1,79 @@
 package model;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Window;
 import model.deplacement.CollisioneurCarre;
 import model.deplacement.DeplacerJoueur;
 import model.deplacement.Direction;
-import model.entities.Guerrier;
-import model.entities.Personnage;
-import model.entities.Props;
+import model.entities.*;
 import model.maps.Map;
 import model.maps.TestMap;
 import launch.Launcher;
 import data.Stub;
 import vue.Background1;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Iterator;
+
 public class Manager {
+
+    private ArrayList<KeyCode> listeTouches = new ArrayList<KeyCode>();
+    private Dictionary<KeyCode, String> keyEvents;
+    private Map map;
 
     public Manager (){
         Loop beep = new Loop(1000);
         beep.attacher(new BeepObserver());
         beep.start();
-
-
-        Map map = new Stub().load();
-        new Background1().updateMap(map);
-
-        //DeplacerJoueur deplace = new DeplacerJoueur(new CollisioneurCarre(map));//On garde une direction (a la base elle est nulle
-
-        //à partir de là, à mettre dans le code behind
-
-
-        /*
-        Rectangle rec = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#cercle");
-
-        cercle.setHeight(joueur.getySize());
-        cercle.setWidth(joueur.getxSize());
-        cercle.setX(joueur.getPos().getxPos());
-        cercle.setY(joueur.getPos().getyPos());
-
-        //Detection et ajout des obstacles dans la liste obstacles
-        Rectangle obst1 = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#obst1");
-        Props obstacle1 = new Props(50,15,150,47,1);
-        obst1.setHeight(obstacle1.getySize()); //hauteur = y, largeur = x
-        obst1.setWidth(obstacle1.getxSize());
-        obst1.setX(obstacle1.getPos().getxPos());
-        obst1.setY(obstacle1.getPos().getyPos());
-
-
-
-        //Instances des classes necessaires
-
-
-
-
-        //Detection des touches (methode lambda qui va gerer le deplacement et l'interaction avec le joueur)
-
-
-
-
-         */
+        map = new Stub().load();
     }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void addTouche (KeyCode s){
+        listeTouches.add(s);
+    }
+
+    public ArrayList<KeyCode> getListeTouches() {
+        return listeTouches;
+    }
+
+    public void resetListeTouches(){
+        listeTouches = new ArrayList<KeyCode>();
+    }
+
+    public void addKeyEvent (KeyCode touche, String method){
+        keyEvents.put(touche, method);
+    }
+
+    public void readKeys (){
+        for (Iterator<KeyCode> it = listeTouches.iterator(); it.hasNext(); ) {
+            KeyCode touche = it.next();
+            try {
+                Method method = this.getClass().getMethod(keyEvents.get(touche));
+                method.invoke(this);
+            }
+            catch (Exception e){
+                System.out.println("méthode non existante ou paramètres érroné\n");
+            }
+        }
+    }
+
+    public void deplacerDroite (){
+        for (Entite entity : map.getAllEntities()) {
+            if (entity.getClass() == Joueur.class) {
+                Direction dir = new Direction(1,0);
+                DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+                deplaceur.deplacer((Personnage)entity, dir);
+                break;
+            }
+        }
+    }
+
 }

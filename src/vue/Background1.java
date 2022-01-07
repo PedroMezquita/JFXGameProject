@@ -6,15 +6,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.deplacement.Direction;
-import model.entities.Entite;
-import model.entities.Position;
+import model.entities.*;
 import launch.Launcher;
 import model.maps.Map;
-import model.entities.Props;
+import model.maps.TestMap;
 
 import java.awt.event.KeyEvent;
 import java.net.URL;
@@ -22,19 +24,24 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Background1 {
+/*
+    @FXML
+    public Circle EnnemiIGuess;
 
     @FXML
-    public Circle EnnemiIGuess = new Circle();
-
+    private Group groupe;
+*/
     @FXML
-    private Group groupe = new Group();
+    private Pane ecran;
 
 
     public void initialize() {
-        ajoutEnnemi();
+        updateMap(Launcher.getManager().getMap());
+        //ecran.setOnKeyPressed(keyEvent -> {Launcher.getManager().addTouche(keyEvent.getCode());});
     }
 
-
+//pas touche à l'id css
+    /*
     @FXML
     public void ajoutEnnemi(){
         EnnemiIGuess.setId("enem1");
@@ -42,7 +49,7 @@ public class Background1 {
         EnnemiIGuess.setCenterY(0);
         groupe.getChildren().addAll(EnnemiIGuess);
     }
-
+*/
 
     @FXML
     public void visualiserMap(Map map){
@@ -54,15 +61,17 @@ public class Background1 {
 
         for (Entite entity : map.getAllEntities()) {
             Rectangle rec = new Rectangle();
+            ecran.getChildren().add(rec);
             rec.setX(entity.getPos().getxPos());
             rec.setY(entity.getPos().getyPos());
-            rec.setHeight(entity.getxSize());
-            rec.setWidth(entity.getySize());
+            rec.setHeight(entity.getySize());
+            rec.setWidth(entity.getxSize());
             rec.setId(entity.getId());
-            //Launcher.getStage().getScene().getRoot().getChildrenUnmodifiable().add(rec);
         }
     }
 
+    //on rajoute pas des trucs dans le modèle depuis la vue.
+    /*
     @FXML
     public ArrayList<Entite> ajouterObstacles(){
         Rectangle obst1 = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#murTop");
@@ -77,8 +86,8 @@ public class Background1 {
 
         return AllProps;
     }
-
-
+    */
+/*
     @FXML
     public Direction detectDirection(Direction dir){
         System.out.println("direction");
@@ -91,7 +100,7 @@ public class Background1 {
 
         return (Direction) null;
     }
-
+*/
 
 
 
