@@ -75,4 +75,8 @@ objet.propiete().bind(objet2.property())
 
 
  Boucleur: juste beep
+
+
+
+ Pour demain Pedro: tous deplacement, attachement au keyevent, avancer les attaques
  */

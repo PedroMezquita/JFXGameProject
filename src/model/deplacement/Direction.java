@@ -29,6 +29,7 @@ public class Direction {
         this.yDir = yDir;
     }
 
+    /*
     public void detectDirection(String codeString){
         switch (codeString){
             case "UP":
@@ -58,7 +59,7 @@ public class Direction {
 
 
     }
-
+*/
 
 }
 /*

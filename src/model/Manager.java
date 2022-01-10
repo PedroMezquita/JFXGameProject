@@ -25,13 +25,15 @@ public class Manager {
     private ArrayList<KeyCode> listeTouches = new ArrayList<KeyCode>();
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
+    private Joueur joueur;
 
     public Manager (){
+        map = new Stub().load();
+        joueur = map.getJoueur();
+        addKeyEvent(KeyCode.RIGHT, "deplacerDroite");
         Loop beep = new Loop(1000);
         beep.attacher(new BeepObserver());
         beep.start();
-        map = new Stub().load();
-        addKeyEvent(KeyCode.RIGHT, "deplacerDroite");
     }
 
     public Map getMap() {
@@ -69,16 +71,18 @@ public class Manager {
         }
     }
 
-    public void deplacerDroite (){
-        for (Entite entity : map.getAllEntities()) {
-            if (entity.getClass() == Joueur.class) {
-                Direction dir = new Direction(1,0);
-                DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
-                deplaceur.deplacer((Personnage)entity, dir);
-                break;
-            }
-        }
+    public void deplacerDroite () {
+        Direction dir = new Direction(1,0);
+        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Droite");
     }
 
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
 }

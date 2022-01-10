@@ -13,4 +13,8 @@ public abstract class Joueur extends Personnage { //point d'extensibilité
     public String toString() {
         return "nom : "+name+", "+super.toString();
     }
+
+    public String getName() {
+        return name;
+    }
 }

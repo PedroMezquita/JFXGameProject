@@ -1,5 +1,8 @@
 package vue;
 
+import javafx.beans.value.ChangeListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,7 +40,14 @@ public class Background1 {
 
     public void initialize() {
         updateMap(Launcher.getManager().getMap());
-        //ecran.setOnKeyPressed(keyEvent -> {Launcher.getManager().addTouche(keyEvent.getCode());});
+        Launcher.getManager().getJoueur().getPos().xPosProperty().addListener(xProperty -> {
+            Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
+            rec.setX(Launcher.getManager().getJoueur().getPos().getxPos());
+        });
+        Launcher.getManager().getJoueur().getPos().yPosProperty().addListener(yProperty -> {
+            Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
+            rec.setY(Launcher.getManager().getJoueur().getPos().getyPos());
+        });
     }
 
 //pas touche à l'id css
