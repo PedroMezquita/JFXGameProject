@@ -17,12 +17,13 @@ import vue.Background1;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Iterator;
 
 public class Manager {
 
     private ArrayList<KeyCode> listeTouches = new ArrayList<KeyCode>();
-    private Dictionary<KeyCode, String> keyEvents;
+    private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
 
     public Manager (){
@@ -30,6 +31,7 @@ public class Manager {
         beep.attacher(new BeepObserver());
         beep.start();
         map = new Stub().load();
+        addKeyEvent(KeyCode.RIGHT, "deplacerDroite");
     }
 
     public Map getMap() {
@@ -37,7 +39,9 @@ public class Manager {
     }
 
     public void addTouche (KeyCode s){
-        listeTouches.add(s);
+        if (! listeTouches.contains(s)){
+            listeTouches.add(s);
+        }
     }
 
     public ArrayList<KeyCode> getListeTouches() {
@@ -74,6 +78,7 @@ public class Manager {
                 break;
             }
         }
+        System.out.println("déplacer Droite");
     }
 
 }
