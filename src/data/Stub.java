@@ -13,11 +13,11 @@ public class Stub implements Loader{
 
     public Map load (){
         Map map = new TestMap();
+        Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",21,21,0,0,"joueur"); //Le joueur charge avant les props
+        map.addEntity(joueur);
+        Direction dir = new Direction(0,0);
         Props obstacle1 = new Props(50,15,150,47,"obst");
         map.addEntity(obstacle1);
-        Direction dir = new Direction(0,0);
-        Personnage joueur = new Guerrier(1,1,10,10,10,10,10,"mec",21,21,0,0,"joueur");
-        map.addEntity(joueur);
         return map;
     }
 }

@@ -41,12 +41,16 @@ public class Background1 {
     public void initialize() {
         updateMap(Launcher.getManager().getMap());
         Launcher.getManager().getJoueur().getPos().xPosProperty().addListener(xProperty -> {
-            Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
+        //    Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
+
+            Rectangle rec = (Rectangle) ecran.getChildren().get(0); //vu que la position du joueur dans le stub est 0 il sera toujours en tete de liste et donc ajouté en premier
             rec.setX(Launcher.getManager().getJoueur().getPos().getxPos());
         });
         Launcher.getManager().getJoueur().getPos().yPosProperty().addListener(yProperty -> {
-            Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
-            rec.setY(Launcher.getManager().getJoueur().getPos().getyPos());
+        //    Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());//Launcher.getManager().getJoueur().getId() Donne "joueur", getName() = "mec"
+
+            Rectangle rec = (Rectangle) ecran.getChildren().get(0); //vu que la position du joueur dans le stub est 0 il sera toujours en tete de liste et donc ajouté en premier
+            rec.setY(Launcher.getManager().getJoueur().getPos().getyPos()); //Il detecte les positions inverses
         });
     }
 
@@ -81,22 +85,6 @@ public class Background1 {
     }
 
     //on rajoute pas des trucs dans le modèle depuis la vue.
-    /*
-    @FXML
-    public ArrayList<Entite> ajouterObstacles(){
-        Rectangle obst1 = (Rectangle) Launcher.getStage().getScene().getRoot().lookup("#murTop");
-        Props obstacle1 = new Props(obst1.getScaleX(),obst1.getScaleY(),obst1.getX(),obst1.getY(), obst1.getId());
-        obst1.setHeight(obstacle1.getySize()); //hauteur = y, largeur = x
-        obst1.setWidth(obstacle1.getxSize());
-        obst1.setX(obstacle1.getPos().getxPos());
-        obst1.setY(obstacle1.getPos().getyPos());
-
-        ArrayList<Entite> AllProps = new ArrayList<Entite>();
-        AllProps.add(obstacle1);
-
-        return AllProps;
-    }
-    */
 /*
     @FXML
     public Direction detectDirection(Direction dir){

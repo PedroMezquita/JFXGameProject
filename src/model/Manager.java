@@ -4,6 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Window;
+import model.attack.Attack;
+import model.attack.Degat;
+import model.attack.Melee;
 import model.deplacement.CollisioneurCarre;
 import model.deplacement.DeplacerJoueur;
 import model.deplacement.Direction;
@@ -26,12 +29,17 @@ public class Manager {
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
     private Joueur joueur;
+    private Direction lastDir; //nous aide a garder un "registre" de la derniere direction
 
     public Manager (){
         map = new Stub().load();
         joueur = map.getJoueur();
         addKeyEvent(KeyCode.RIGHT, "deplacerDroite");
-        Loop beep = new Loop(1000);
+        addKeyEvent(KeyCode.LEFT, "deplacerGauche");
+        addKeyEvent(KeyCode.UP, "deplacerHaut");
+        addKeyEvent(KeyCode.DOWN, "deplacerBas");
+        addKeyEvent(KeyCode.SPACE, "attack");
+        Loop beep = new Loop(100);
         beep.attacher(new BeepObserver());
         beep.start();
     }
@@ -71,12 +79,45 @@ public class Manager {
         }
     }
 
+
+
     public void deplacerDroite () {
         Direction dir = new Direction(1,0);
         DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Droite");
+        lastDir = dir;
     }
+
+    public void deplacerGauche () {
+        Direction dir = new Direction(-1,0);
+        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        deplaceur.deplacer((Personnage)joueur, dir);
+        System.out.println("déplacer Gauche");
+        lastDir = dir;
+    }
+
+    public void deplacerHaut() {
+        Direction dir = new Direction(0,-1); //Pour une raison que je ne comprends si je met 1 ça decends au lieu de monter
+        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        deplaceur.deplacer((Personnage)joueur, dir);
+        System.out.println("déplacer Haut");
+        lastDir = dir;
+    }
+
+    public void deplacerBas() {
+        Direction dir = new Direction(0,1); //Pour une raison que je ne comprends si je met -1 ça monte au lieu de decendre
+        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        deplaceur.deplacer((Personnage)joueur, dir);
+        System.out.println("déplacer Bas");
+        lastDir = dir;
+    }
+    public void attack() {
+        Melee melee = new Melee(joueur, lastDir); //et voila le lastDir (une autre fois, desole garbage collector)
+        Attack atk = new Attack(melee, joueur);
+    }
+
+
 
     public Joueur getJoueur() {
         return joueur;

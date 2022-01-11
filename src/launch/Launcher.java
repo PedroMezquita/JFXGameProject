@@ -78,5 +78,6 @@ objet.propiete().bind(objet2.property())
 
 
 
- Pour demain Pedro: tous deplacement, attachement au keyevent, avancer les attaques
+ a faire: Revoir la conception des attaques
+ Fait: tous deplacement, attachement au key event, avancer les attaques, debug
  */
