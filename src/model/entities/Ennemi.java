@@ -1,6 +1,6 @@
 package model.entities;
 
-import model.deplacement.Direction;
+import model.Direction;
 
 import java.util.LinkedList;
 

@@ -1,6 +1,7 @@
 package model.deplacement;
 
-import model.Observer;
+import model.Direction;
+import model.collisions.Collisioneur;
 import model.entities.Personnage;
 
 public class DeplacerJoueur implements Deplaceur {

@@ -1,7 +1,7 @@
 package model.deplacement;
 
 
-import model.Observer;
+import model.Direction;
 import model.entities.Personnage;
 
 public interface Deplaceur {

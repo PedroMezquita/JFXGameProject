@@ -1,12 +1,7 @@
 package model.attack;
 
-import model.deplacement.Direction;
+import model.Direction;
 import model.entities.Personnage;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
 
 public class Melee extends Range{
 

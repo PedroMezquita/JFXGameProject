@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.attack.Attack;
+import model.attack.AttackPattern;
 import model.entities.Entite;
 
 public abstract class Personnage extends Entite { //point d'extensabilité
@@ -10,6 +12,7 @@ public abstract class Personnage extends Entite { //point d'extensabilité
     private int currentHP;
     private int currentMana;
     private int speed;
+    private AttackPattern attaque;
 
     public Personnage(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, String id) {
         super(xsize,ysize,xpos,ypos, id);
@@ -80,5 +83,13 @@ public abstract class Personnage extends Entite { //point d'extensabilité
 
     public String toString(){
         return "atk : "+atkPnt+", mag : "+magPnt+", max hp : "+maxHP+", max mana : "+maxMana+", current hp : "+currentHP+", current mana : "+currentMana+", speed : "+speed;
+    }
+
+    public void setAttaque(AttackPattern attaque) {
+        this.attaque = attaque;
+    }
+
+    public AttackPattern getAttaque() {
+        return attaque;
     }
 }

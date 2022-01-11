@@ -1,10 +1,7 @@
-package model.deplacement;
+package model.collisions;
 
-import model.maps.Map;
+import model.Direction;
 import model.entities.Personnage;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public interface Collisioneur {//point d'extensibilité
     public int testCollision(Personnage pers, Direction dir);

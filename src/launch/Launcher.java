@@ -1,34 +1,11 @@
 package launch;
 
-import com.sun.javafx.fxml.FXMLLoaderHelper;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-import model.BeepObserver;
-import model.Loop;
 import model.Manager;
-import model.deplacement.Collisioneur;
-import model.deplacement.CollisioneurCarre;
-import model.deplacement.Direction;
-import model.entities.Entite;
-import model.entities.Guerrier;
-import model.entities.Personnage;
-import model.entities.Props;
-import model.maps.Map;
-import model.maps.TestMap;
-import vue.Background1;
-
-import model.deplacement.*;
-
-import java.util.ArrayList;
 
 
 public class Launcher extends Application{
@@ -47,6 +24,7 @@ public class Launcher extends Application{
         stage.setScene(scene);
         stage.show();
         scene.setOnKeyPressed(keyEvent -> {manager.addTouche(keyEvent.getCode());});
+        scene.setOnKeyReleased(keyEvent -> {manager.removeTouche(keyEvent.getCode());});
     }
 
     public static Manager getManager() {

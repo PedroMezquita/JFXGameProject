@@ -1,30 +1,11 @@
 package vue;
 
-import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import model.deplacement.Direction;
 import model.entities.*;
 import launch.Launcher;
 import model.maps.Map;
-import model.maps.TestMap;
-
-import java.awt.event.KeyEvent;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class Background1 {
 /*
@@ -52,6 +33,9 @@ public class Background1 {
             Rectangle rec = (Rectangle) ecran.getChildren().get(0); //vu que la position du joueur dans le stub est 0 il sera toujours en tete de liste et donc ajouté en premier
             rec.setY(Launcher.getManager().getJoueur().getPos().getyPos()); //Il detecte les positions inverses
         });
+
+        Launcher.getManager().getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(Launcher.getManager().getMap());});
+
     }
 
 //pas touche à l'id css
@@ -72,9 +56,9 @@ public class Background1 {
 
     @FXML
     public void updateMap(Map map){
-
         for (Entite entity : map.getAllEntities()) {
             Rectangle rec = new Rectangle();
+            ecran.getChildren().removeAll();
             ecran.getChildren().add(rec);
             rec.setX(entity.getPos().getxPos());
             rec.setY(entity.getPos().getyPos());

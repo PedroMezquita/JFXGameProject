@@ -1,19 +1,11 @@
-package model.deplacement;
+package model.collisions;
 
-import javafx.geometry.Bounds;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+import model.Direction;
 import model.entities.Entite;
-import model.entities.Joueur;
-import model.entities.Position;
 import model.maps.Map;
 import model.entities.Personnage;
 
-import javax.print.attribute.standard.JobStateReason;
-import java.util.ArrayList;
-
-public class CollisioneurCarre implements Collisioneur{
+public class CollisioneurCarre implements Collisioneur {
 //faudra réussir à en faire un pour les ronds, je m'en occupe, fait marcher la boucle stp
     Map map;
 
