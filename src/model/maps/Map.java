@@ -2,23 +2,25 @@ package model.maps;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
-import launch.Launcher;
+import model.attack.Attack;
 import model.entities.Entite;
 import model.entities.Joueur;
-import model.entities.Mage;
-import java.lang.Object;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 
 public abstract class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
     private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
+    private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
 
     public void addEntity(Entite entity) {
         allEntities.add(entity);
         setNbEntite(getNbEntite()+1);
+    }
+
+    public void addAttack (Attack atk){
+        allAttacks.add(atk);
+        addEntity(atk);
     }
 
     public ArrayList<Entite> getAllEntities() {
@@ -55,4 +57,12 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
         setNbEntite(getNbEntite()-1);
     }
 
+    public void removeAttack (Attack atk){
+        allAttacks.remove(atk);
+        removeEntity(atk);
+    }
+
+    public ArrayList<Attack> getAllAttacks() {
+        return (ArrayList<Attack>) allAttacks.clone();
+    }
 }

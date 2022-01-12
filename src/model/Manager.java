@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.input.KeyCode;
+import model.attack.AtkUpdater;
 import model.attack.Attack;
 import model.attack.Attacker;
 import model.attack.JoueurAttacker;
@@ -30,7 +31,7 @@ public class Manager {
         addKeyEvent(KeyCode.DOWN, "deplacerBas");
         addKeyEvent(KeyCode.SPACE, "attaque");
         Loop beep = new Loop(50);
-        beep.attacher(new BeepObserver());
+        beep.attacher(new MainObserver(this));
         beep.start();
     }
 
@@ -110,10 +111,14 @@ public class Manager {
         System.out.println("attaque\n");
         JoueurAttacker attacker = new JoueurAttacker();
         Attack attaque = attacker.attack(joueur, lastDir);
-        map.addEntity(attaque);
+        joueur.setCurrentAttack(attaque);
+        map.addAttack(attaque);
     }
 
-
+    public void updateAttaque(){
+        AtkUpdater updater = new AtkUpdater();
+        updater.updateAttack(map);
+    }
 
     public Joueur getJoueur() {
         return joueur;

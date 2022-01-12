@@ -11,7 +11,6 @@ import model.Manager;
 public class Launcher extends Application{
 
     private static Stage stage;
-    private static Manager manager = new Manager();
 
     //les trucs abstract servent à faire les points d'extensibilité pour que le code soit SOLID comme on l'apprend en cours, parce que c'est demandé.
     @Override
@@ -19,17 +18,11 @@ public class Launcher extends Application{
 
         //Chargement du scenario
         stage = primaryStage;
-        Parent root = FXMLLoader.load(this.getClass().getResource("/Background1.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/Background1.fxml")));
         stage.setScene(scene);
         stage.show();
-        scene.setOnKeyPressed(keyEvent -> {manager.addTouche(keyEvent.getCode());});
-        scene.setOnKeyReleased(keyEvent -> {manager.removeTouche(keyEvent.getCode());});
     }
 
-    public static Manager getManager() {
-        return manager;
-    }
 
     public static Stage getStage() {
         return stage;
@@ -56,6 +49,6 @@ objet.propiete().bind(objet2.property())
 
 
 
- a faire: Revoir la conception des attaques
- Fait: tous deplacement, attachement au key event, avancer les attaques, debug
+ a faire: déplacement d attaque et gestion des PVs
+ Fait: attaque
  */

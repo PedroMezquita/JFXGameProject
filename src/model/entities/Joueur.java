@@ -1,6 +1,6 @@
 package model.entities;
 
-public abstract class Joueur extends Personnage { //point d'extensibilité
+public class Joueur extends Personnage { //point d'extensibilité
 
     private String name; //Nom du personnage
 
