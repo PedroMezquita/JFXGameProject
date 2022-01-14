@@ -2,7 +2,6 @@ package model.entities;
 
 import model.attack.Attack;
 import model.attack.AttackPattern;
-import model.entities.Entite;
 
 public abstract class Personnage extends Entite { //point d'extensabilité
     private int atkPnt;

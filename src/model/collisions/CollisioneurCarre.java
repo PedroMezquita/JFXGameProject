@@ -5,7 +5,7 @@ import model.entities.Entite;
 import model.maps.Map;
 import model.entities.Personnage;
 
-public class CollisioneurCarre implements Collisioneur {
+public class CollisioneurCarre implements CollisioneurMouvement {
 //faudra réussir à en faire un pour les ronds, je m'en occupe, fait marcher la boucle stp
     Map map;
 

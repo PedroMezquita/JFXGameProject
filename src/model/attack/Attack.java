@@ -1,5 +1,6 @@
 package model.attack;
 
+import model.Direction;
 import model.entities.Entite;
 import model.entities.Personnage;
 
@@ -8,11 +9,13 @@ public class Attack extends Entite {
     private int lifeTime;
     private int degat;
     private Personnage perso;
+    private Direction dir;
 
-    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso){
+    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso, Direction dir){
         super(xSize, ySize, xPos, yPos, id);
         this.lifeTime = lifeTime;
         this.perso = perso;
+        this.dir = dir;
     }
 
     public int getLifeTime() {
@@ -26,4 +29,6 @@ public class Attack extends Entite {
     public Personnage getPerso() {
         return perso;
     }
+
+    public Direction getDir() {return dir;}
 }

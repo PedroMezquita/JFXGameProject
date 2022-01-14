@@ -49,6 +49,6 @@ objet.propiete().bind(objet2.property())
 
 
 
- a faire: déplacement d attaque et gestion des PVs
- Fait: attaque
+ a faire: gestion des PVs, ennemis, regler collision gauche/haut avec l'attaque
+ Fait: attaque vers toutes directions (ZQSD), deplacement d'attaque, collisionneur d'attaque
  */

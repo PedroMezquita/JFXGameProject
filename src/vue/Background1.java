@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import model.Manager;
 import model.entities.*;
 import launch.Launcher;
@@ -50,16 +51,6 @@ public class Background1 {
 
     }
 
-//pas touche à l'id css
-    /*
-    @FXML
-    public void ajoutEnnemi(){
-        EnnemiIGuess.setId("enem1");
-        EnnemiIGuess.setCenterX(0);
-        EnnemiIGuess.setCenterY(0);
-        groupe.getChildren().addAll(EnnemiIGuess);
-    }
-*/
 
     @FXML
     public void updateMap(Map map){
@@ -73,6 +64,12 @@ public class Background1 {
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
+        Text text = new Text();
+        text.setText("HP: ");
+
+        text.setX(100);
+        text.setY(100);
+        ecran.getChildren().add(text);
     }
 
     //on rajoute pas des trucs dans le modèle depuis la vue.

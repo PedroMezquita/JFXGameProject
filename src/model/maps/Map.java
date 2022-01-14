@@ -3,6 +3,7 @@ package model.maps;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import model.attack.Attack;
+import model.entities.Ennemi;
 import model.entities.Entite;
 import model.entities.Joueur;
 
@@ -38,6 +39,16 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
             }
         }
         return null;
+    }
+
+    public ArrayList<Ennemi> getEnnemis(){
+        ArrayList<Ennemi> listeEnnemis = new ArrayList<>();
+        for (Entite entity : getAllEntities()){
+            if (entity.getId() == "ennemi"){
+                listeEnnemis.add((Ennemi) entity);
+            }
+        }
+        return listeEnnemis;
     }
 
     public int getNbEntite() {

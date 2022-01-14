@@ -20,7 +20,7 @@ public class Manager {
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
     private Joueur joueur;
-    private Direction lastDir; //nous aide a garder un "registre" de la derniere direction
+//    private Direction lastDir; //nous aide a garder un "registre" de la derniere direction
 
     public Manager (){
         map = new Stub().load();
@@ -29,7 +29,11 @@ public class Manager {
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");
         addKeyEvent(KeyCode.UP, "deplacerHaut");
         addKeyEvent(KeyCode.DOWN, "deplacerBas");
-        addKeyEvent(KeyCode.SPACE, "attaque");
+        addKeyEvent(KeyCode.Z, "attaqueHaut");
+        addKeyEvent(KeyCode.S, "attaqueBas");
+        addKeyEvent(KeyCode.Q, "attaqueGauche");
+        addKeyEvent(KeyCode.D, "attaqueDroite");
+
         Loop beep = new Loop(50);
         beep.attacher(new MainObserver(this));
         beep.start();
@@ -76,16 +80,16 @@ public class Manager {
 
     public void deplacerDroite () {
         Direction dir = new Direction(1,0);
-        lastDir = dir;
+        //lastDir = dir;
         DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Droite");
-        lastDir = dir;
+        //lastDir = dir;
     }
 
     public void deplacerGauche () {
         Direction dir = new Direction(-1,0);
-        lastDir = dir;
+        //lastDir = dir;
         DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Gauche");
@@ -93,7 +97,7 @@ public class Manager {
 
     public void deplacerHaut () {
         Direction dir = new Direction(0,-1); //Pour une raison que je ne comprends si je met 1 ça decends au lieu de monter
-        lastDir = dir;
+        //lastDir = dir;
         DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Haut");
@@ -101,19 +105,44 @@ public class Manager {
 
     public void deplacerBas () {
         Direction dir = new Direction(0,1); //Pour une raison que je ne comprends si je met -1 ça monte au lieu de decendre
-        lastDir = dir;
+        //lastDir = dir;
         DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Bas");
     }
 
-    public void attaque () {
+    public void attaqueHaut () {
         System.out.println("attaque\n");
         JoueurAttacker attacker = new JoueurAttacker();
-        Attack attaque = attacker.attack(joueur, lastDir);
+        Attack attaque = attacker.attack(joueur, new Direction(0,-1 ));
         joueur.setCurrentAttack(attaque);
         map.addAttack(attaque);
     }
+
+     public void attaqueBas () {
+        System.out.println("attaque\n");
+        JoueurAttacker attacker = new JoueurAttacker();
+        Attack attaque = attacker.attack(joueur, new Direction(0, 1));
+        joueur.setCurrentAttack(attaque);
+        map.addAttack(attaque);
+    }
+
+      public void attaqueGauche () {
+        System.out.println("attaque\n");
+        JoueurAttacker attacker = new JoueurAttacker();
+        Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
+        joueur.setCurrentAttack(attaque);
+        map.addAttack(attaque);
+    }
+
+     public void attaqueDroite () {
+        System.out.println("attaque\n");
+        JoueurAttacker attacker = new JoueurAttacker();
+        Attack attaque = attacker.attack(joueur, new Direction(1, 0));
+        joueur.setCurrentAttack(attaque);
+        map.addAttack(attaque);
+    }
+
 
     public void updateAttaque(){
         AtkUpdater updater = new AtkUpdater();

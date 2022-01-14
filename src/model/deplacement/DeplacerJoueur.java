@@ -1,14 +1,15 @@
 package model.deplacement;
 
 import model.Direction;
-import model.collisions.Collisioneur;
+import model.collisions.CollisioneurMouvement;
+import model.collisions.CollisioneurMouvement;
 import model.entities.Personnage;
 
 public class DeplacerJoueur implements Deplaceur {
 
-    Collisioneur col;
+    CollisioneurMouvement col;
 
-    public DeplacerJoueur(Collisioneur col) {
+    public DeplacerJoueur(CollisioneurMouvement col) {
         this.col = col;
     }
 

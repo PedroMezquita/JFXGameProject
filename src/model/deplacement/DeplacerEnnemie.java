@@ -1,12 +1,12 @@
 package model.deplacement;
 
 import model.Direction;
-import model.collisions.Collisioneur;
+import model.collisions.CollisioneurMouvement;
 import model.entities.Personnage;
 
 public class DeplacerEnnemie implements Deplaceur{
 
-    Collisioneur col;
+    CollisioneurMouvement col;
 
     @Override
     public void deplacer(Personnage pers, Direction dir) { //dir est la direction se raprochant le plus du joueur, à ensuite modifier avec le pattern de mouvement
