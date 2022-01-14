@@ -9,8 +9,8 @@ public class Ennemi extends Personnage { //classe abstraite pour faire un point 
     private LinkedList<Direction> pattern = new LinkedList<>();
     private int isMoving = 0;
 
-    public Ennemi(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, String id) {
-        super(atkPnt, magPnt, maxHP, maxMana, currentHP, currentMana, speed, xsize, ysize, xpos, ypos, id);
+    public Ennemi(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor) {
+        super(atkPnt, magPnt, maxHP, maxMana, currentHP, currentMana, speed, xsize, ysize, xpos, ypos, id, redColor, greenColor, blueColor);
     }
 
 

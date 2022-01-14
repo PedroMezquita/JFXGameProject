@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public abstract class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
     private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
+    private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
 
     public void addEntity(Entite entity) {
@@ -42,13 +43,7 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     }
 
     public ArrayList<Ennemi> getEnnemis(){
-        ArrayList<Ennemi> listeEnnemis = new ArrayList<>();
-        for (Entite entity : getAllEntities()){
-            if (entity.getId() == "ennemi"){
-                listeEnnemis.add((Ennemi) entity);
-            }
-        }
-        return listeEnnemis;
+        return allEnemi;
     }
 
     public int getNbEntite() {
@@ -71,6 +66,16 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     public void removeAttack (Attack atk){
         allAttacks.remove(atk);
         removeEntity(atk);
+    }
+
+    public void addEnemy (Ennemi enmy){
+        allEnemi.add(enmy);
+        addEntity(enmy);
+    }
+
+    public void removeEnemy (Ennemi enemy){
+        allEnemi.remove(enemy);
+        removeEntity(enemy);
     }
 
     public ArrayList<Attack> getAllAttacks() {

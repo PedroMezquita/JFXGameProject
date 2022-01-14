@@ -5,5 +5,5 @@ import model.maps.Map;
 
 public interface CollisioneurAttaque {
 
-    public int hitTest(Attack atk, Map map);
+    public void hitTest(Attack atk, Map map);
 }

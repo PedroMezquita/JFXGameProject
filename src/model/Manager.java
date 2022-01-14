@@ -20,7 +20,7 @@ public class Manager {
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
     private Joueur joueur;
-//    private Direction lastDir; //nous aide a garder un "registre" de la derniere direction
+    //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
         map = new Stub().load();

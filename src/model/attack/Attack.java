@@ -11,11 +11,12 @@ public class Attack extends Entite {
     private Personnage perso;
     private Direction dir;
 
-    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso, Direction dir){
-        super(xSize, ySize, xPos, yPos, id);
+    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso, Direction dir, int redColor, int greenColor, int blueColor){
+        super(xSize, ySize, xPos, yPos, id, redColor, greenColor, blueColor);
         this.lifeTime = lifeTime;
         this.perso = perso;
         this.dir = dir;
+        this.degat = degat;
     }
 
     public int getLifeTime() {
@@ -31,4 +32,12 @@ public class Attack extends Entite {
     }
 
     public Direction getDir() {return dir;}
+
+    public int getDegat() {
+        return degat;
+    }
+
+    public void setDegat(int degat) {
+        this.degat = degat;
+    }
 }

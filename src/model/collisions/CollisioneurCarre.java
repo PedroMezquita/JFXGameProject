@@ -23,12 +23,14 @@ public class CollisioneurCarre implements CollisioneurMouvement {
         //pour chaque entite de la map
         for (Entite entity : this.map.getAllEntities()) {
             //on calcule sa "hitbox"
-            int minY = entity.getPos().getyPos(), maxY = entity.getPos().getyPos()+entity.getySize(), minX = entity.getPos().getxPos(), maxX = entity.getPos().getxPos()+entity.getxSize();
-            //si ((le y minimum/maximum du joueur est compris entre les y du props)ou(le y du personnage englobe les y du props))et id du perso != id du props
-            if (((persMinY >= minY && persMinY <= maxY) || (persMaxY >= minY && persMaxY <= maxY) || (persMaxY >= maxY && persMinY <= minY)) && entity.getId() != pers.getId()){
-                //la même avec le X
-                if (((persMinX >= minX && persMinX <= maxX) || (persMaxX >= minX && persMaxX <= maxX) || (persMaxX >= maxX && persMinX <= minX)) && entity.getId() != pers.getId()){
-                    return 0;
+            if (!map.getAllAttacks().contains(entity)) {
+                int minY = entity.getPos().getyPos(), maxY = entity.getPos().getyPos() + entity.getySize(), minX = entity.getPos().getxPos(), maxX = entity.getPos().getxPos() + entity.getxSize();
+                //si ((le y minimum/maximum du joueur est compris entre les y du props)ou(le y du personnage englobe les y du props))et id du perso != id du props
+                if (((persMinY >= minY && persMinY <= maxY) || (persMaxY >= minY && persMaxY <= maxY) || (persMaxY >= maxY && persMinY <= minY)) && entity.getId() != pers.getId()) {
+                    //la même avec le X
+                    if (((persMinX >= minX && persMinX <= maxX) || (persMaxX >= minX && persMaxX <= maxX) || (persMaxX >= maxX && persMinX <= minX)) && entity.getId() != pers.getId()) {
+                        return 0;
+                    }
                 }
             }
         }

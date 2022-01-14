@@ -5,12 +5,18 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
     private int ySize;
     private Position position;  //attribut à garder pour la map et les props
     private String id;
+    private int redColor;
+    private int blueColor;
+    private int greenColor;
 
-    public Entite(int xSize, int ySize, int xpos, int ypos, String id){
+    public Entite(int xSize, int ySize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor){
         this.xSize = xSize;
         this.ySize = ySize;
         this.position = new Position(xpos, ypos);
         this.id = id;
+        this.redColor = redColor;
+        this.blueColor = blueColor;
+        this.greenColor = greenColor;
     }
 
     public Position getPos(){
@@ -34,5 +40,16 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         return id;
     }
 
+    public int getRedColor() {
+        return redColor;
+    }
+
+    public int getGreenColor() {
+        return greenColor;
+    }
+
+    public int getBlueColor() {
+        return blueColor;
+    }
 }
 

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import model.Manager;
@@ -59,17 +60,20 @@ public class Background1 {
             Rectangle rec = new Rectangle();
             rec.layoutXProperty().bind(entity.getPos().xPosProperty());
             rec.layoutYProperty().bind(entity.getPos().yPosProperty());
+            rec.setFill(Color.color((float) entity.getRedColor(),(float) entity.getGreenColor(),(float) entity.getBlueColor()));
             rec.setHeight(entity.getySize());
             rec.setWidth(entity.getxSize());
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
+        /*
         Text text = new Text();
         text.setText("HP: ");
 
         text.setX(100);
         text.setY(100);
         ecran.getChildren().add(text);
+        */
     }
 
     //on rajoute pas des trucs dans le modèle depuis la vue.
