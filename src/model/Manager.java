@@ -1,12 +1,17 @@
 package model;
 
 import javafx.scene.input.KeyCode;
+import model.IA.IA;
+import model.IA.IAPathfind;
 import model.attack.AtkUpdater;
 import model.attack.Attack;
 import model.attack.Attacker;
 import model.attack.JoueurAttacker;
 import model.collisions.CollisioneurCarre;
+import model.collisions.CollisioneurEnnemi;
+import model.deplacement.DeplacerEnnemie;
 import model.deplacement.DeplacerJoueur;
+import model.deplacement.Deplaceur;
 import model.entities.*;
 import model.maps.Map;
 import data.Stub;
@@ -20,11 +25,13 @@ public class Manager {
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
     private Map map;
     private Joueur joueur;
+    private ArrayList<Ennemi> listeEnemis;
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
         map = new Stub().load();
         joueur = map.getJoueur();
+        listeEnemis = map.getEnnemis();
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");
         addKeyEvent(KeyCode.UP, "deplacerHaut");
@@ -35,8 +42,12 @@ public class Manager {
         addKeyEvent(KeyCode.D, "attaqueDroite");
 
         Loop beep = new Loop(50);
+        Loop beepEnnemi = new Loop(100);
+
         beep.attacher(new MainObserver(this));
+        beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
+        beepEnnemi.start();
     }
 
     public Map getMap() {
@@ -143,6 +154,16 @@ public class Manager {
         map.addAttack(attaque);
     }
 
+
+    public void deplacerEnemi(){
+        IA enemiIA = new IAPathfind();
+        Deplaceur deplace = new DeplacerEnnemie(new CollisioneurEnnemi());
+        for (Personnage ennemi : listeEnemis){
+            Direction dir = enemiIA.approcheJoueur(joueur, ennemi);
+            deplace.deplacer(ennemi, dir);
+        }
+
+    }
 
     public void updateAttaque(){
         AtkUpdater updater = new AtkUpdater();
