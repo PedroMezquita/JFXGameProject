@@ -157,7 +157,7 @@ public class Manager {
 
     public void deplacerEnemi(){
         IA enemiIA = new IAPathfind();
-        Deplaceur deplace = new DeplacerEnnemie(new CollisioneurEnnemi());
+        Deplaceur deplace = new DeplacerEnnemie(new CollisioneurEnnemi(map));
         for (Personnage ennemi : listeEnemis){
             Direction dir = enemiIA.approcheJoueur(joueur, ennemi);
             deplace.deplacer(ennemi, dir);

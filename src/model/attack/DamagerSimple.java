@@ -3,6 +3,7 @@ package model.attack;
 import model.collisions.CollisioneurAttaque;
 import model.collisions.CollisioneurAttaqueEnnemi;
 import model.entities.Ennemi;
+import model.entities.Personnage;
 import model.maps.Map;
 
 import java.util.ArrayList;

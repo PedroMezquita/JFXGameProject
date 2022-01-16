@@ -22,6 +22,9 @@ public class Stub implements Loader{
         map.addEnemy(ennemi2);
         AttackPattern atq = new AttackPattern(10,1,10,10,"base");
         joueur.setAttaque(atq);
+        ennemi.setAttaque(atq);
+        ennemi1.setAttaque(atq);
+        ennemi2.setAttaque(atq);
         map.addEntity(joueur);
         Direction dir = new Direction(0,0);
         Props obstacle1 = new Props(50,15,150,47,"obst", 0,0,0);

@@ -1,6 +1,7 @@
 package model.deplacement;
 
 import model.Direction;
+import model.attack.Attack;
 import model.collisions.CollisioneurMouvement;
 import model.entities.Personnage;
 
@@ -16,6 +17,7 @@ public class DeplacerEnnemie implements Deplaceur{
             int verticalMvmt = dir.getxDir() * pers.getSpeed();
             int horizontalMvmt = dir.getyDir() * pers.getSpeed();
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);
+
         }
         //Il faudrais trouver comment on peut detecter collision avec le joueur
         else{
@@ -24,6 +26,7 @@ public class DeplacerEnnemie implements Deplaceur{
             pers.setSpeed(tmpSpeed-1);
             deplacer(pers,dir);
             pers.setSpeed(tmpSpeed);
+
         }
 
     }
