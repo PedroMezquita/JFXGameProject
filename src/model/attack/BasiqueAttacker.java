@@ -4,7 +4,7 @@ import model.Direction;
 import model.entities.Personnage;
 import model.attack.AttackPattern;
 
-public class JoueurAttacker implements Attacker{
+public class BasiqueAttacker implements Attacker{
 
     @Override
     public Attack attack(Personnage pers, Direction dir) {

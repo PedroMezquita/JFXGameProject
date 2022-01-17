@@ -13,7 +13,7 @@ public class DeplacerEnnemie implements Deplaceur{
 
     @Override
     public void deplacer(Personnage pers, Direction dir) { //dir est la direction se raprochant le plus du joueur, à ensuite modifier avec le pattern de mouvement
-        if(col.testCollision(pers, dir) == 1){
+        if(col.testCollision(pers, dir)){
             int verticalMvmt = dir.getxDir() * pers.getSpeed();
             int horizontalMvmt = dir.getyDir() * pers.getSpeed();
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);

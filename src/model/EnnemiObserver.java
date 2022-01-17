@@ -13,7 +13,7 @@ public class EnnemiObserver implements Observer{
     @Override
     public void update() {
         Platform.runLater(()->{
-            manager.deplacerEnemi();
+            manager.updateEnemi();
         });
     }
 }

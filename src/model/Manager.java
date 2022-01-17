@@ -6,11 +6,10 @@ import model.IA.IAPathfind;
 import model.attack.AtkUpdater;
 import model.attack.Attack;
 import model.attack.Attacker;
-import model.attack.JoueurAttacker;
+import model.attack.BasiqueAttacker;
 import model.collisions.CollisioneurCarre;
-import model.collisions.CollisioneurEnnemi;
+import model.deplacement.DeplacerBasique;
 import model.deplacement.DeplacerEnnemie;
-import model.deplacement.DeplacerJoueur;
 import model.deplacement.Deplaceur;
 import model.entities.*;
 import model.maps.Map;
@@ -42,7 +41,7 @@ public class Manager {
         addKeyEvent(KeyCode.D, "attaqueDroite");
 
         Loop beep = new Loop(50);
-        Loop beepEnnemi = new Loop(100);
+        Loop beepEnnemi = new Loop(200);
 
         beep.attacher(new MainObserver(this));
         beepEnnemi.attacher(new EnnemiObserver(this));
@@ -92,7 +91,7 @@ public class Manager {
     public void deplacerDroite () {
         Direction dir = new Direction(1,0);
         //lastDir = dir;
-        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Droite");
         //lastDir = dir;
@@ -101,7 +100,7 @@ public class Manager {
     public void deplacerGauche () {
         Direction dir = new Direction(-1,0);
         //lastDir = dir;
-        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Gauche");
     }
@@ -109,7 +108,7 @@ public class Manager {
     public void deplacerHaut () {
         Direction dir = new Direction(0,-1); //Pour une raison que je ne comprends si je met 1 ça decends au lieu de monter
         //lastDir = dir;
-        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Haut");
     }
@@ -117,14 +116,14 @@ public class Manager {
     public void deplacerBas () {
         Direction dir = new Direction(0,1); //Pour une raison que je ne comprends si je met -1 ça monte au lieu de decendre
         //lastDir = dir;
-        DeplacerJoueur deplaceur = new DeplacerJoueur(new CollisioneurCarre(map));
+        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
         System.out.println("déplacer Bas");
     }
 
     public void attaqueHaut () {
         System.out.println("attaque\n");
-        JoueurAttacker attacker = new JoueurAttacker();
+        BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0,-1 ));
         joueur.setCurrentAttack(attaque);
         map.addAttack(attaque);
@@ -132,7 +131,7 @@ public class Manager {
 
      public void attaqueBas () {
         System.out.println("attaque\n");
-        JoueurAttacker attacker = new JoueurAttacker();
+        BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0, 1));
         joueur.setCurrentAttack(attaque);
         map.addAttack(attaque);
@@ -140,7 +139,7 @@ public class Manager {
 
       public void attaqueGauche () {
         System.out.println("attaque\n");
-        JoueurAttacker attacker = new JoueurAttacker();
+        BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
         joueur.setCurrentAttack(attaque);
         map.addAttack(attaque);
@@ -148,18 +147,18 @@ public class Manager {
 
      public void attaqueDroite () {
         System.out.println("attaque\n");
-        JoueurAttacker attacker = new JoueurAttacker();
+        BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(1, 0));
         joueur.setCurrentAttack(attaque);
         map.addAttack(attaque);
     }
 
 
-    public void deplacerEnemi(){
+    public void updateEnemi(){
         IA enemiIA = new IAPathfind();
-        Deplaceur deplace = new DeplacerEnnemie(new CollisioneurEnnemi(map));
+        Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
         for (Personnage ennemi : listeEnemis){
-            Direction dir = enemiIA.approcheJoueur(joueur, ennemi);
+            Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
             deplace.deplacer(ennemi, dir);
         }
 

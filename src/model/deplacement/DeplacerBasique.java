@@ -5,17 +5,17 @@ import model.collisions.CollisioneurMouvement;
 import model.collisions.CollisioneurMouvement;
 import model.entities.Personnage;
 
-public class DeplacerJoueur implements Deplaceur {
+public class DeplacerBasique implements Deplaceur {
 
     CollisioneurMouvement col;
 
-    public DeplacerJoueur(CollisioneurMouvement col) {
+    public DeplacerBasique(CollisioneurMouvement col) {
         this.col = col;
     }
 
     @Override
     public void deplacer(Personnage pers, Direction dir) {
-        if (col.testCollision(pers, dir) == 1) {
+        if (col.testCollision(pers, dir)) {
             int verticalMvmt = dir.getxDir() * pers.getSpeed();
             int horizontalMvmt = dir.getyDir() * pers.getSpeed();
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);
