@@ -159,7 +159,8 @@ public class Manager {
         Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
         for (Personnage ennemi : listeEnemis){
             Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
-            deplace.deplacer(ennemi, dir);
+            deplace.deplacer(ennemi, new Direction(dir.getxDir(),0));
+            deplace.deplacer(ennemi, new Direction(0,dir.getyDir()));
         }
 
     }
