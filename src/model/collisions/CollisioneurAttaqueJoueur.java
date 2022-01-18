@@ -19,6 +19,8 @@ public class CollisioneurAttaqueJoueur implements CollisioneurAttaque{
         Personnage hits = map.getJoueur();
         ArrayList<Personnage> allHits = new ArrayList<>();
             //Calcul de la hitbox de l'ennemi
+        //S'il n'y a pas de joueur alors la partie est fini et ceci ne peut arriver qu'une fois les loops sont interrompues
+        if (hits == null ){return;}
             int persMinY = hits.getPos().getyPos(), persMaxY = hits.getPos().getyPos()+hits.getySize(), persMinX = hits.getPos().getxPos(), persMaxX = hits.getPos().getxPos()+hits.getxSize();
 
             //si ((le y minimum/maximum du enemi est compris entre les y de l'attaque

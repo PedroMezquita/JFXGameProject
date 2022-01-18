@@ -46,8 +46,9 @@ public class Manager {
         beep = new Loop(50);
         beepEnnemi = new Loop(200);
 
-        beep.attacher(new MainObserver(this));
         beep.attacher(new GameOverObserver(this));
+        beep.attacher(new MainObserver(this));
+
         beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
         beepEnnemi.start();
@@ -193,7 +194,9 @@ public class Manager {
     }
 
     public void gameOver(){
-        beep.interrupt();
+
         beepEnnemi.interrupt();
+        beep.interrupt();
+
     }
 }
