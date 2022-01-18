@@ -2,6 +2,8 @@ package vue;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -12,6 +14,8 @@ import model.Manager;
 import model.entities.*;
 import launch.Launcher;
 import model.maps.Map;
+
+import java.awt.*;
 
 public class Background1 {
 /*
@@ -59,6 +63,30 @@ public class Background1 {
     public void updateMap(Map map){
         ecran.getChildren().removeAll(ecran.getChildren());
         for (Entite entity : map.getAllEntities()) {
+//---TEST
+            if (entity.getId() == "joueur" || entity.getId() == "ennemi1" || entity.getId() == "ennemi3") {
+                String url = entity.getSprite();
+                ImageView img = new ImageView(new Image(url));
+                img.layoutXProperty().bind(entity.getPos().xPosProperty());
+                img.layoutYProperty().bind(entity.getPos().yPosProperty());
+                img.setFitHeight(entity.getySize());
+                img.setFitWidth(entity.getxSize());
+                img.setId(entity.getId());
+                ecran.getChildren().add(img);
+            }
+            else {
+                Rectangle rec = new Rectangle();
+                rec.layoutXProperty().bind(entity.getPos().xPosProperty());
+                rec.layoutYProperty().bind(entity.getPos().yPosProperty());
+                rec.setFill(Color.color((float) entity.getRedColor(),(float) entity.getGreenColor(),(float) entity.getBlueColor()));
+                rec.setHeight(entity.getySize());
+                rec.setWidth(entity.getxSize());
+                rec.setId(entity.getId());
+                ecran.getChildren().add(rec);
+            }
+//---TEST
+/*
+        for (Entite entity : map.getAllEntities()) {
             Rectangle rec = new Rectangle();
             rec.layoutXProperty().bind(entity.getPos().xPosProperty());
             rec.layoutYProperty().bind(entity.getPos().yPosProperty());
@@ -68,6 +96,9 @@ public class Background1 {
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
+ */
+        }
+
         /*
         Text text = new Text();
         text.setText("HP: ");

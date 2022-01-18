@@ -8,6 +8,7 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
     private int redColor;
     private int blueColor;
     private int greenColor;
+    private String sprite;
 
     public Entite(int xSize, int ySize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor){
         this.xSize = xSize;
@@ -51,5 +52,11 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
     public int getBlueColor() {
         return blueColor;
     }
+
+//---TEST
+    public String getSprite(){return sprite;}
+
+    public void setSprite(String sprite) {this.sprite = sprite;}
+    //---TEST
 }
 
