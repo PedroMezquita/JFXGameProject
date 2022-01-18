@@ -1,6 +1,7 @@
 package model;
 import launch.Launcher;
 import javafx.application.Platform;
+import model.entities.Joueur;
 
 public class MainObserver implements Observer{
 

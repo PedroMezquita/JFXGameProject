@@ -1,6 +1,7 @@
 package vue;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -76,6 +77,8 @@ public class Background1 {
         ecran.getChildren().add(text);
         */
     }
+
+
 
     //on rajoute pas des trucs dans le modèle depuis la vue.
 /*
