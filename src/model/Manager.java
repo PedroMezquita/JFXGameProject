@@ -26,6 +26,8 @@ public class Manager {
     private Map map;
     private Joueur joueur;
     private ArrayList<Ennemi> listeEnemis;
+    private Loop beep;
+    private Loop beepEnnemi;
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
@@ -41,10 +43,11 @@ public class Manager {
         addKeyEvent(KeyCode.Q, "attaqueGauche");
         addKeyEvent(KeyCode.D, "attaqueDroite");
 
-        Loop beep = new Loop(50);
-        Loop beepEnnemi = new Loop(200);
+        beep = new Loop(50);
+        beepEnnemi = new Loop(200);
 
         beep.attacher(new MainObserver(this));
+        beep.attacher(new GameOverObserver(this));
         beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
         beepEnnemi.start();
@@ -187,5 +190,10 @@ public class Manager {
 
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
+    }
+
+    public void gameOver(){
+        beep.interrupt();
+        beepEnnemi.interrupt();
     }
 }
