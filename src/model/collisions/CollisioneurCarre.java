@@ -21,6 +21,9 @@ public class CollisioneurCarre implements CollisioneurMouvement {
         //calcul de la hitbox du personnage
         int persMinY = pers.getPos().getyPos()+(dir.getyDir()*pers.getSpeed()), persMaxY = pers.getPos().getyPos()+pers.getySize()+(dir.getyDir()*pers.getSpeed()), persMinX = pers.getPos().getxPos()+(dir.getxDir()*pers.getSpeed()), persMaxX = pers.getPos().getxPos()+pers.getxSize()+(dir.getxDir()*pers.getSpeed());
         //pour chaque entite de la map
+        if (persMinY < 0 || persMaxY > map.getHeight()  || persMinX < 0  || persMaxX > map.getWidth() ){
+            return false;
+        }
         for (Entite entity : this.map.getAllEntities()) {
             //on calcule sa "hitbox"
             if (!map.getAllAttacks().contains(entity)) {

@@ -47,9 +47,10 @@ public class Background1 {
 
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
+        ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
+        ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_RELEASED, Event -> {manager.removeTouche(Event.getCode());});
-
     }
 
 

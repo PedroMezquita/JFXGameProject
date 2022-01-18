@@ -14,6 +14,8 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
+    private int width;
+    private int height;
 
     public void addEntity(Entite entity) {
         allEntities.add(entity);
@@ -56,6 +58,22 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public IntegerProperty nbEntiteProperty() {
         return nbEntite;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     public void removeEntity (Entite entity){
