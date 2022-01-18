@@ -22,6 +22,7 @@ public class Manager {
 
     private HashSet<KeyCode> listeTouches = new HashSet<KeyCode>();
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
+    private Hashtable<String, KeyCode> reversedKeyEvents = new Hashtable<String, KeyCode>();
     private Map map;
     private Joueur joueur;
     private ArrayList<Ennemi> listeEnemis;
@@ -71,6 +72,7 @@ public class Manager {
 
     public void addKeyEvent (KeyCode touche, String method){
         keyEvents.put(touche, method);
+        reversedKeyEvents.put(method,touche);
     }
 
     public void readKeys (){
@@ -131,6 +133,9 @@ public class Manager {
 
      public void attaqueBas () {
         System.out.println("attaque\n");
+        if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut"))){
+            return;
+        }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0, 1));
         joueur.setCurrentAttack(attaque);
@@ -139,6 +144,9 @@ public class Manager {
 
       public void attaqueGauche () {
         System.out.println("attaque\n");
+          if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
+              return;
+          }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
         joueur.setCurrentAttack(attaque);
@@ -147,6 +155,9 @@ public class Manager {
 
      public void attaqueDroite () {
         System.out.println("attaque\n");
+         if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueGauche")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
+             return;
+         }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(1, 0));
         joueur.setCurrentAttack(attaque);
