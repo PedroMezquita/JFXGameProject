@@ -2,6 +2,7 @@ package vue;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -12,6 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
+import javafx.util.converter.NumberStringConverter;
 import model.Manager;
 import model.entities.*;
 import launch.Launcher;
@@ -75,6 +77,12 @@ public class Background1 {
                                                                         txt.setY(ecran.getHeight()/2);
                                                                     }
         });
+//POINTS
+        manager.getMap().nbEnnemisProperty().addListener(nbEnemis ->{
+            manager.setPoints(manager.getPoints()+1);
+
+        });
+//POINTS
         ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
         ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
@@ -107,6 +115,12 @@ public class Background1 {
                 rec.setId(entity.getId());
                 ecran.getChildren().add(rec);
             }
+            //POINTS
+
+            TextField txt = new TextField();
+            txt.textProperty().bindBidirectional(manager.getPointsProperty(), new NumberStringConverter());
+            ecran.getChildren().add(txt);
+            //POINTS
 //---TEST
 /*
         for (Entite entity : map.getAllEntities()) {

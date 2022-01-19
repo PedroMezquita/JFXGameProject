@@ -14,6 +14,9 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
+    //POINTS
+    private IntegerProperty nbEnemis = new SimpleIntegerProperty(0);
+    //POINTS
     private int width;
     private int height;
     private String image;
@@ -89,11 +92,17 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public void addEnemy (Ennemi enmy){
         allEnemi.add(enmy);
+        //POINTS
+        setNbEnnemis(getNbEnnemis()+1);
+        //POINTS
         addEntity(enmy);
     }
 
     public void removeEnemy (Ennemi enemy){
         allEnemi.remove(enemy);
+        //POINTS
+        setNbEnnemis(getNbEnnemis()-1);
+        //POINTS
         removeEntity(enemy);
     }
 
@@ -108,4 +117,17 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     public void setImage(String image) {
         this.image = image;
     }
+    //POINTS
+
+
+    public int getNbEnnemis() { return nbEnemis.get(); }
+
+    public void setNbEnnemis(int nbEntite) {
+        this.nbEnemis.set(nbEntite);
+    }
+
+    public IntegerProperty nbEnnemisProperty() {
+        return nbEnemis;
+    }
+    //POINTS
 }
