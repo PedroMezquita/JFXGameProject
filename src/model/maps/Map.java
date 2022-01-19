@@ -11,18 +11,22 @@ import java.util.ArrayList;
 
 public abstract class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
     private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
+    private ArrayList<Entite> removedEntities = new ArrayList<Entite>();
+    private ArrayList<Entite> newEntities = new ArrayList<Entite>();
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
     //POINTS
     private IntegerProperty nbEnemis = new SimpleIntegerProperty(0);
     //POINTS
+
     private int width;
     private int height;
     private String image;
 
     public void addEntity(Entite entity) {
         allEntities.add(entity);
+        newEntities.add(entity);
         setNbEntite(getNbEntite()+1);
     }
 
@@ -82,6 +86,7 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public void removeEntity (Entite entity){
         allEntities.remove(entity);
+        removedEntities.add(entity);
         setNbEntite(getNbEntite()-1);
     }
 
@@ -130,4 +135,21 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
         return nbEnemis;
     }
     //POINTS
+
+
+    public ArrayList<Entite> getRemovedEntities() {
+        return (ArrayList<Entite>) removedEntities.clone();
+    }
+
+    public void eraseEntity (Entite entite){
+        removedEntities.remove(entite);
+    }
+
+    public void handleEntity (Entite entite){
+        newEntities.remove(entite);
+    }
+
+    public ArrayList<Entite> getNewEntities() {
+        return (ArrayList<Entite>) newEntities.clone();
+    }
 }

@@ -13,6 +13,7 @@ public class Stub implements Loader{
 
     public Map load (){
         Map map = new TestMap();
+        map.setImage("TemplateCharacter.png");
         Personnage joueur = new Joueur(1,1,10,10,10,10,5,"mec", /* 21*/ 41, /* 21*/41,0,0,"joueur", 1,0,0); //Le joueur charge avant les props
         //---TEST
         joueur.setSprite("TemplateCharacter.png");
@@ -33,6 +34,7 @@ public class Stub implements Loader{
 
         map.addEnemy(ennemi2);
         AttackPattern atq = new AttackPattern(10,1,20,10,"base");
+        atq.setSprite("TemplateCharacter.png");
         atq.setRGB(0,0,1);
         joueur.setAttaque(atq);
         AttackPattern atqEnemi = new AttackPattern(20,1,15,15,"slime");

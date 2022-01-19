@@ -1,5 +1,7 @@
 package model.entities;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import model.attack.Attack;
 import model.attack.AttackPattern;
 
@@ -8,7 +10,7 @@ public abstract class Personnage extends Entite { //point d'extensabilité
     private int magPnt;
     private int maxHP;
     private int maxMana;
-    private int currentHP;
+    private IntegerProperty currentHP = new SimpleIntegerProperty();
     private int currentMana;
     private int speed;
     private AttackPattern attaque;
@@ -20,7 +22,7 @@ public abstract class Personnage extends Entite { //point d'extensabilité
         this.magPnt = magPnt;
         this.maxHP = maxHP;
         this.maxMana = maxMana;
-        this.currentHP = currentHP;
+        setCurrentHP(currentHP);
         this.currentMana = currentMana;
         this.speed = speed;
     }
@@ -58,11 +60,15 @@ public abstract class Personnage extends Entite { //point d'extensabilité
     }
 
     public int getCurrentHP() {
-        return currentHP;
+        return currentHP.get();
     }
 
     public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
+        this.currentHP.set(currentHP);
+    }
+
+    public IntegerProperty currentHPProperty() {
+        return currentHP;
     }
 
     public int getCurrentMana() {

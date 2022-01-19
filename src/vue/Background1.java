@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -22,6 +22,7 @@ import model.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Background1 {
 /*
@@ -57,73 +58,72 @@ public class Background1 {
         //ecran.getChildren().add(perso);
 
         updateMap(manager.getMap());
-        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());
-                                                                    if(manager.getJoueur().getCurrentHP() <= 0){
-                                                                        manager.getBeep().interrupt();
-                                                                        manager.getBeepEnnemi().interrupt();
-                                                                        Text txt = new Text("GAME OVER");
-                                                                        txt.setTextAlignment(TextAlignment.CENTER);
-                                                                        ecran.getChildren().add(txt);
-                                                                        txt.setX(ecran.getWidth()/2);
-                                                                        txt.setY(ecran.getHeight()/2);
-                                                                    }
-                                                                    if(manager.getMap().getEnnemis().isEmpty()){
-                                                                        manager.getBeep().interrupt();
-                                                                        manager.getBeepEnnemi().interrupt();
-                                                                        Text txt = new Text("Victoire");
-                                                                        txt.setTextAlignment(TextAlignment.CENTER);
-                                                                        ecran.getChildren().add(txt);
-                                                                        txt.setX(ecran.getWidth()/2);
-                                                                        txt.setY(ecran.getHeight()/2);
-                                                                    }
+        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
+
+        manager.getJoueur().currentHPProperty().addListener(pv -> {
+            if (manager.getJoueur().getCurrentHP() <= 0) {
+                manager.getBeep().interrupt();
+                manager.getBeepEnnemi().interrupt();
+                Text txt = new Text("GAME OVER");
+                txt.setTextAlignment(TextAlignment.CENTER);
+                ecran.getChildren().add(txt);
+                txt.setX(ecran.getWidth() / 2);
+                txt.setY(ecran.getHeight() / 2);
+            }
+        });
+        manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
+                                                                            manager.getBeep().interrupt();
+                                                                            manager.getBeepEnnemi().interrupt();
+                                                                            Text txt = new Text("Victoire");
+                                                                            txt.setTextAlignment(TextAlignment.CENTER);
+                                                                            ecran.getChildren().add(txt);
+                                                                            txt.setX(ecran.getWidth()/2);
+                                                                            txt.setY(ecran.getHeight()/2);
+                                                                        }
         });
 //POINTS
+        /*
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis ->{
             manager.setPoints(manager.getPoints()+1);
 
         });
 //POINTS
+
+         */
         ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
         ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_RELEASED, Event -> {manager.removeTouche(Event.getCode());});
+
+
     }
 
 
-    @FXML
-    public void updateMap(Map map){
-        ecran.getChildren().removeAll(ecran.getChildren());
-        for (Entite entity : map.getAllEntities()) {
-//---TEST
-            if (entity.getSprite() != null) {
-                String url = entity.getSprite();
-                ImageView img = new ImageView(new Image(url));
-                img.layoutXProperty().bind(entity.getPos().xPosProperty());
-                img.layoutYProperty().bind(entity.getPos().yPosProperty());
-                img.setFitHeight(entity.getySize());
-                img.setFitWidth(entity.getxSize());
-                img.setId(entity.getId());
-                ecran.getChildren().add(img);
-            }
-            else {
-                Rectangle rec = new Rectangle();
-                rec.layoutXProperty().bind(entity.getPos().xPosProperty());
-                rec.layoutYProperty().bind(entity.getPos().yPosProperty());
-                rec.setFill(Color.color((float) entity.getRedColor(),(float) entity.getGreenColor(),(float) entity.getBlueColor()));
-                rec.setHeight(entity.getySize());
-                rec.setWidth(entity.getxSize());
-                rec.setId(entity.getId());
-                ecran.getChildren().add(rec);
-            }
+
+
+            /*
             //POINTS
 
             TextField txt = new TextField();
             txt.textProperty().bindBidirectional(manager.getPointsProperty(), new NumberStringConverter());
             ecran.getChildren().add(txt);
             //POINTS
-//---TEST
-/*
-        for (Entite entity : map.getAllEntities()) {
+
+             */
+
+
+    public void loadEntity(Entite entity){
+        if (entity.getSprite() != null) {
+            String url = entity.getSprite();
+            ImageView img = new ImageView(new Image(url));
+            img.layoutXProperty().bind(entity.getPos().xPosProperty());
+            img.layoutYProperty().bind(entity.getPos().yPosProperty());
+            img.setFitHeight(entity.getySize());
+            img.setFitWidth(entity.getxSize());
+            img.setId(entity.getId());
+            ecran.getChildren().add(img);
+        }
+        else {
             Rectangle rec = new Rectangle();
             rec.layoutXProperty().bind(entity.getPos().xPosProperty());
             rec.layoutYProperty().bind(entity.getPos().yPosProperty());
@@ -133,19 +133,18 @@ public class Background1 {
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
- */
-        }
-
-        /*
-        Text text = new Text();
-        text.setText("HP: ");
-
-        text.setX(100);
-        text.setY(100);
-        ecran.getChildren().add(text);
-        */
     }
 
+    public void updateMap (Map map){
+        for (Entite entity : map.getRemovedEntities()) {
+            ecran.getChildren().remove(ecran.lookup("#"+entity.getId()));
+            map.eraseEntity(entity);
+        }
+        for (Entite entite : map.getNewEntities()){
+            loadEntity(entite);
+            map.handleEntity(entite);
+        }
+    }
 
 
     //on rajoute pas des trucs dans le modèle depuis la vue.

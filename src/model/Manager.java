@@ -30,9 +30,12 @@ public class Manager {
     private ArrayList<Ennemi> listeEnemis;
     private Loop beep;
     private Loop beepEnnemi;
+    /*
 //POINTS
     private IntegerProperty points = new SimpleIntegerProperty();
     //POINTS
+
+     */
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
@@ -57,9 +60,12 @@ public class Manager {
         beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
         beepEnnemi.start();
+        /*
 //POINTS
         points.set(0);
         //POINTS
+
+         */
     }
 
     public Map getMap() {
@@ -215,6 +221,7 @@ public class Manager {
     public Loop getBeepEnnemi() {
         return beepEnnemi;
     }
+    /*
 //POINTS
     public int getPoints(){ return points.get(); }
 
@@ -222,4 +229,6 @@ public class Manager {
 
     public IntegerProperty getPointsProperty() {return points;}
     //POINTS
+
+     */
 }
