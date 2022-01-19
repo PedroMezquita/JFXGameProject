@@ -6,17 +6,21 @@ public class AttackPattern {
     private int lifeTime;
     private int degats;
     private String id;
+    private int cooldown;
+    private int currentcooldown;
     private int redColor;
     private int greenColor;
     private int blueColor;
     private String sprite;
 
-    public AttackPattern (int lifeTime, int degats, int xSize, int ySize, String id){
+    public AttackPattern (int lifeTime, int degats, int xSize, int ySize, String id, int cooldown){
         this.lifeTime = lifeTime;
         this.degats = degats;
         this.xSize = xSize;
         this.ySize = ySize;
         this.id = id;
+        this.cooldown = cooldown;
+        this.currentcooldown = cooldown;
     }
 
     public int getLifeTime() {
@@ -63,6 +67,18 @@ public class AttackPattern {
 
     public String getSprite() {
         return sprite;
+    }
+
+    public int getCurrentcooldown() {
+        return currentcooldown;
+    }
+
+    public void setCurrentcooldown(int currentcooldown) {
+        this.currentcooldown = currentcooldown;
+    }
+
+    public void resetCooldown (){
+        currentcooldown = cooldown;
     }
 
 }

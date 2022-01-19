@@ -36,7 +36,8 @@ public class IAPathfind implements IA{
             dir.setyDir(path.getyDir()*dir.getyDir());
             dir.setxDir(path.getxDir()*dir.getxDir());
             Attack atk = atker.attack(enemi,dir);
-            map.addAttack(atk);
+            if (atk != null)
+                map.addAttack(atk);
         }
 
 

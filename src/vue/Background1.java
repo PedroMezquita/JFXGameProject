@@ -57,6 +57,10 @@ public class Background1 {
         //perso = new Rectangle(manager.getJoueur().getxSize(), manager.getJoueur().getySize());
         //ecran.getChildren().add(perso);
 
+        ecran.setPrefWidth(500);
+        ecran.setPrefHeight(500);
+        ecran.setMinHeight(500);
+        ecran.setMinWidth(500);
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
 

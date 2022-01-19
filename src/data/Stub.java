@@ -33,11 +33,11 @@ public class Stub implements Loader{
         //---TEST
 
         map.addEnemy(ennemi2);
-        AttackPattern atq = new AttackPattern(10,1,20,10,"base");
+        AttackPattern atq = new AttackPattern(10,1,20,10,"base", 5);
         atq.setSprite("TemplateCharacter.png");
         atq.setRGB(0,0,1);
         joueur.setAttaque(atq);
-        AttackPattern atqEnemi = new AttackPattern(20,1,15,15,"slime");
+        AttackPattern atqEnemi = new AttackPattern(20,1,15,15,"slime",5);
         atqEnemi.setRGB(0,1,0);
         ennemi.setAttaque(atqEnemi);
         ennemi2.setAttaque(atqEnemi);

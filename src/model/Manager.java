@@ -1,5 +1,6 @@
 package model;
 
+import data.Niveau1;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
@@ -39,7 +40,7 @@ public class Manager {
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
-        map = new Stub().load();
+        map = new Niveau1().load();
         joueur = map.getJoueur();
         listeEnemis = map.getEnnemis();
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
@@ -94,6 +95,7 @@ public class Manager {
     }
 
     public void readKeys (){
+        joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
         for (Iterator<KeyCode> it = listeTouches.iterator(); it.hasNext(); ) {
             KeyCode touche = it.next();
             try {
@@ -145,8 +147,10 @@ public class Manager {
         System.out.println("attaque\n");
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0,-1 ));
-        joueur.setCurrentAttack(attaque);
-        map.addAttack(attaque);
+        if (attaque != null) {
+            joueur.setCurrentAttack(attaque);
+            map.addAttack(attaque);
+        }
     }
 
      public void attaqueBas () {
@@ -156,8 +160,10 @@ public class Manager {
         }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0, 1));
-        joueur.setCurrentAttack(attaque);
-        map.addAttack(attaque);
+         if (attaque != null) {
+             joueur.setCurrentAttack(attaque);
+             map.addAttack(attaque);
+         }
     }
 
       public void attaqueGauche () {
@@ -167,8 +173,10 @@ public class Manager {
           }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
-        joueur.setCurrentAttack(attaque);
-        map.addAttack(attaque);
+          if (attaque != null) {
+              joueur.setCurrentAttack(attaque);
+              map.addAttack(attaque);
+          }
     }
 
      public void attaqueDroite () {
@@ -178,8 +186,10 @@ public class Manager {
          }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(1, 0));
-        joueur.setCurrentAttack(attaque);
-        map.addAttack(attaque);
+         if (attaque != null) {
+             joueur.setCurrentAttack(attaque);
+             map.addAttack(attaque);
+         }
     }
 
 
@@ -187,6 +197,7 @@ public class Manager {
         IA enemiIA = new IAPathfind();
         Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
         for (Personnage ennemi : listeEnemis){
+            ennemi.getAttaque().setCurrentcooldown(ennemi.getAttaque().getCurrentcooldown()-1);
             Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
             deplace.deplacer(ennemi, new Direction(dir.getxDir(),0));
             deplace.deplacer(ennemi, new Direction(0,dir.getyDir()));
