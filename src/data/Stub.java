@@ -33,12 +33,16 @@ public class Stub implements Loader{
 
         map.addEnemy(ennemi2);
         AttackPattern atq = new AttackPattern(10,1,20,10,"base");
+        atq.setRGB(0,0,1);
         joueur.setAttaque(atq);
-        ennemi.setAttaque(atq);
-        ennemi2.setAttaque(atq);
+        AttackPattern atqEnemi = new AttackPattern(20,1,15,15,"slime");
+        atqEnemi.setRGB(0,1,0);
+        ennemi.setAttaque(atqEnemi);
+        ennemi2.setAttaque(atqEnemi);
         map.addEntity(joueur);
         Direction dir = new Direction(0,0);
-        Props obstacle1 = new Props(50,15,150,47,"obst", 0,0,0);
+        Props obstacle1 = new Props(50,15,150,47,"obst");
+        obstacle1.setRGB(0,0,0);
         map.addEntity(obstacle1);
         return map;
     }

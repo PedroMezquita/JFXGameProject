@@ -15,7 +15,7 @@ public abstract class Personnage extends Entite { //point d'extensabilité
     private Attack currentAttack;
 
     public Personnage(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor) {
-        super(xsize,ysize,xpos,ypos, id, redColor, greenColor, blueColor);
+        super(xsize,ysize,xpos,ypos, id);
         this.atkPnt = atkPnt;
         this.magPnt = magPnt;
         this.maxHP = maxHP;

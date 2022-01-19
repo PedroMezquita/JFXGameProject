@@ -10,14 +10,11 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
     private int greenColor;
     private String sprite;
 
-    public Entite(int xSize, int ySize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor){
+    public Entite(int xSize, int ySize, int xpos, int ypos, String id){
         this.xSize = xSize;
         this.ySize = ySize;
         this.position = new Position(xpos, ypos);
-        this.id = id;
-        this.redColor = redColor;
-        this.blueColor = blueColor;
-        this.greenColor = greenColor;
+        this.id = id;;
     }
 
     public Position getPos(){
@@ -53,7 +50,25 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         return blueColor;
     }
 
-//---TEST
+    public void setRedColor(int redColor) {
+        this.redColor = redColor;
+    }
+
+    public void setGreenColor(int greenColor) {
+        this.greenColor = greenColor;
+    }
+
+    public void setBlueColor(int blueColor) {
+        this.blueColor = blueColor;
+    }
+
+    public  void setRGB (int redColor,int greenColor,int blueColor){
+        this.redColor = redColor;
+        this.greenColor = greenColor;
+        this.blueColor = blueColor;
+    }
+
+    //---TEST
     public String getSprite(){return sprite;}
 
     public void setSprite(String sprite) {this.sprite = sprite;}

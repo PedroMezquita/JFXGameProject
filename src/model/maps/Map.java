@@ -16,6 +16,7 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
     private int width;
     private int height;
+    private String image;
 
     public void addEntity(Entite entity) {
         allEntities.add(entity);
@@ -98,5 +99,13 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public ArrayList<Attack> getAllAttacks() {
         return (ArrayList<Attack>) allAttacks.clone();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Loop extends Thread{
 
     int timer;
-    ArrayList<Observer> listeObs = new ArrayList<Observer>();
+    private ArrayList<Observer> listeObs = new ArrayList<Observer>();
 
     public Loop (int timer){
         this.timer = timer;
@@ -40,4 +40,7 @@ public class Loop extends Thread{
         }
     }
 
+    public ArrayList<Observer> getListeObs() {
+        return listeObs;
+    }
 }

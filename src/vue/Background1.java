@@ -10,11 +10,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import model.Manager;
 import model.entities.*;
 import launch.Launcher;
 import model.maps.Map;
+import model.Observer;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Background1 {
@@ -51,7 +55,26 @@ public class Background1 {
         //ecran.getChildren().add(perso);
 
         updateMap(manager.getMap());
-        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
+        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());
+                                                                    if(manager.getJoueur().getCurrentHP() <= 0){
+                                                                        manager.getBeep().interrupt();
+                                                                        manager.getBeepEnnemi().interrupt();
+                                                                        Text txt = new Text("GAME OVER");
+                                                                        txt.setTextAlignment(TextAlignment.CENTER);
+                                                                        ecran.getChildren().add(txt);
+                                                                        txt.setX(ecran.getWidth()/2);
+                                                                        txt.setY(ecran.getHeight()/2);
+                                                                    }
+                                                                    if(manager.getMap().getEnnemis().isEmpty()){
+                                                                        manager.getBeep().interrupt();
+                                                                        manager.getBeepEnnemi().interrupt();
+                                                                        Text txt = new Text("Victoire");
+                                                                        txt.setTextAlignment(TextAlignment.CENTER);
+                                                                        ecran.getChildren().add(txt);
+                                                                        txt.setX(ecran.getWidth()/2);
+                                                                        txt.setY(ecran.getHeight()/2);
+                                                                    }
+        });
         ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
         ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
@@ -64,7 +87,7 @@ public class Background1 {
         ecran.getChildren().removeAll(ecran.getChildren());
         for (Entite entity : map.getAllEntities()) {
 //---TEST
-            if (entity.getId() == "joueur" || entity.getId() == "ennemi1" || entity.getId() == "ennemi3") {
+            if (entity.getSprite() != null) {
                 String url = entity.getSprite();
                 ImageView img = new ImageView(new Image(url));
                 img.layoutXProperty().bind(entity.getPos().xPosProperty());

@@ -199,4 +199,12 @@ public class Manager {
         beep.interrupt();
 
     }
+
+    public Loop getBeep() {
+        return beep;
+    }
+
+    public Loop getBeepEnnemi() {
+        return beepEnnemi;
+    }
 }

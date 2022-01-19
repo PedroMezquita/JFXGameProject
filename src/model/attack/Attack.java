@@ -11,8 +11,8 @@ public class Attack extends Entite {
     private Personnage perso;
     private Direction dir;
 
-    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso, Direction dir, int redColor, int greenColor, int blueColor){
-        super(xSize, ySize, xPos, yPos, id, redColor, greenColor, blueColor);
+    public Attack(int lifeTime, int degat, int xPos, int yPos, int xSize, int ySize, String id, Personnage perso, Direction dir){
+        super(xSize, ySize, xPos, yPos, id);
         this.lifeTime = lifeTime;
         this.perso = perso;
         this.dir = dir;
