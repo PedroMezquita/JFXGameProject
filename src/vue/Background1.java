@@ -137,6 +137,10 @@ public class Background1 {
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
+        Image img = new Image("TemplateBackground.png");
+        BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background back = new Background(backImg);
+        ecran.setBackground(back);
     }
 
     public void updateMap (Map map){
