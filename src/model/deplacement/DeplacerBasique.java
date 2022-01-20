@@ -15,7 +15,7 @@ public class DeplacerBasique implements Deplaceur {
 
     @Override
     public void deplacer(Personnage pers, Direction dir) {
-        if (col.testCollision(pers, dir)) {
+        if (col.testCollision(pers, dir) || pers.getSpeed() == 0) {
             int verticalMvmt = dir.getxDir() * pers.getSpeed();
             int horizontalMvmt = dir.getyDir() * pers.getSpeed();
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);
@@ -23,7 +23,12 @@ public class DeplacerBasique implements Deplaceur {
         else {
                 int tmpSpeed = pers.getSpeed();
                 //récursivité qui permet de se coller au mur histoire de rendre le déplacement moins galère pour le joueur
-                pers.setSpeed(tmpSpeed - 1);
+                if (tmpSpeed > 0) {
+                    pers.setSpeed(tmpSpeed - 1);
+                }
+                else {
+                    pers.setSpeed(tmpSpeed + 1);
+                }
                 deplacer(pers, dir);
                 pers.setSpeed(tmpSpeed);
         }

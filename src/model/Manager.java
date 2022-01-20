@@ -1,8 +1,6 @@
 package model;
 
-import data.Niveau;
-import data.Niveau1;
-import data.Niveau2;
+import data.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
@@ -18,7 +16,6 @@ import model.deplacement.DeplacerEnnemie;
 import model.deplacement.Deplaceur;
 import model.entities.*;
 import model.maps.Map;
-import data.Stub;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -53,8 +50,12 @@ public class Manager {
 
     public void init (){
         lvl = new Niveau1();
-        lvl.setNiveauSuivant(new Niveau2());
+        lvl.getLast().setNiveauSuivant(new Niveau2());
+        lvl.getLast().setNiveauSuivant(new Niveau3());
+        lvl.getLast().setNiveauSuivant(new Niveau4());
         map = lvl.load();
+        map.setWidth(500);
+        map.setHeight(500);
         joueur = map.getJoueur();
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");

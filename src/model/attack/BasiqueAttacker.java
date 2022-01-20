@@ -3,6 +3,7 @@ package model.attack;
 import model.Direction;
 import model.entities.Personnage;
 import model.attack.AttackPattern;
+import model.maps.Map;
 
 public class BasiqueAttacker implements Attacker{
 
