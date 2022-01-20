@@ -10,6 +10,7 @@ public class EnnemiObserver implements Observer{
         this.manager = manager;
     }
 
+    //met a jour les ennemis à chaque tour de boucle
     @Override
     public void update() {
         Platform.runLater(()->{

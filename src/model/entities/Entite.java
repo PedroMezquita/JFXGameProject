@@ -2,14 +2,22 @@ package model.entities;
 
 //élément de base contenu dans une carte
 public abstract class Entite {
-    private int xSize; //taille horizontale
-    private int ySize; //taille verticale
-    private Position position;  //position de l'entité
-    private String id; //identifiant de l'entité
-    private double redColor; //valeur de rouge de l'entité
-    private double blueColor; //valeur de vert de l'entité
-    private double greenColor; //valeur de bleu de l'entité
-    private String sprite; //image
+    //taille horizontale
+    private int xSize;
+    //taille verticale
+    private int ySize;
+    //position de l'entité
+    private Position position;
+    //identifiant de l'entité
+    private String id;
+    //valeur de rouge de l'entité
+    private double redColor;
+    //valeur de bleu de l'entité
+    private double blueColor;
+    //valeur de vert de l'entité
+    private double greenColor;
+    //image
+    private String sprite;
 
     public Entite(int xSize, int ySize, int xpos, int ypos, String id){
         this.xSize = xSize;

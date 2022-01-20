@@ -1,7 +1,10 @@
 package model;
 
+//classe métier direction
 public class Direction {
+    //direction horizontale
     private int xDir;
+    //direction verticale
     private int yDir;
 
     public Direction(int xDir, int yDir){

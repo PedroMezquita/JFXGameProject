@@ -28,13 +28,13 @@ public class Niveau3 extends Niveau{
         obstacle4.setRGB(0,0,0);
         obstacle4.setSprite("TemplateWall.png");
         map.addEntity(obstacle4);
-        Personnage joueur = new Joueur(1,1,10,10,10,10,7,"mec", /* 21*/ 41, /* 21*/41,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
+        Personnage joueur = new Joueur(1,10,10,7,"mec", /* 21*/ 41, /* 21*/41,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
         joueur.setSprite("TemplateCharacter.png");
         AttackPattern atqJoueur = new AttackPattern(5, 1, 10, 25, "rapide", 3);
         atqJoueur.setRGB(1,0.5,0.5);
         joueur.setAttaque(atqJoueur);
         map.addEntity(joueur);
-        Ennemi ennemi = new Ennemi(5,1,50,10,50,10,2, 25, 25, 250, 400, "ennemi1", 1,1,0);
+        Ennemi ennemi = new Ennemi(5,50,50,2, 25, 25, 250, 400, "ennemi1", 1,1,0);
         ennemi.setSprite("TemplateEnnemi.png");
         AttackPattern atqEnemi = new AttackPattern(100,5,100,15,"slime",50);
         atqEnemi.setRGB(1,1,0);

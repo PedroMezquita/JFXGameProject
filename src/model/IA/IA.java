@@ -1,11 +1,11 @@
 package model.IA;
 
 import model.Direction;
-import model.entities.Entite;
 import model.entities.Personnage;
 import model.maps.Map;
 
+//interface qui définie la méthode de déplacement des ennemis
 public interface IA {
-
-    public Direction approcheJoueur(Personnage joueur, Personnage enemi, Map map);
+    //déplace un ennemi en direction du joueur et retourne la direction choisie
+    Direction approcheJoueur(Personnage joueur, Personnage enemi, Map map);
 }

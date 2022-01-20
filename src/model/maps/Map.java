@@ -9,13 +9,20 @@ import model.entities.Joueur;
 
 import java.util.ArrayList;
 
-public class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
-    private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
+public class Map {
+    //liste de toutes le entités
+    private ArrayList<Entite> allEntities = new ArrayList<Entite>();
+    //entités récement supprimées de allEntities
     private ArrayList<Entite> removedEntities = new ArrayList<Entite>();
+    //entités récement ajoutées à allEntities
     private ArrayList<Entite> newEntities = new ArrayList<Entite>();
+    //liste des attaques sur la carte
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
+    //liste des ennemis sur la carte
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
+    //nombre d'entite sur la carte
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
+    //nombre d'enemis
     private IntegerProperty nbEnemis = new SimpleIntegerProperty(0);
 
     private int width;
@@ -99,17 +106,13 @@ public class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue
 
     public void addEnemy (Ennemi enmy){
         allEnemi.add(enmy);
-        //POINTS
         setNbEnnemis(getNbEnnemis()+1);
-        //POINTS
         addEntity(enmy);
     }
 
     public void removeEnemy (Ennemi enemy){
         allEnemi.remove(enemy);
-        //POINTS
         setNbEnnemis(getNbEnnemis()-1);
-        //POINTS
         removeEntity(enemy);
     }
 
@@ -124,8 +127,6 @@ public class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue
     public void setImage(String image) {
         this.image = image;
     }
-    //POINTS
-
 
     public int getNbEnnemis() { return nbEnemis.get(); }
 
@@ -136,8 +137,6 @@ public class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue
     public IntegerProperty nbEnnemisProperty() {
         return nbEnemis;
     }
-    //POINTS
-
 
     public ArrayList<Entite> getRemovedEntities() {
         return (ArrayList<Entite>) removedEntities.clone();

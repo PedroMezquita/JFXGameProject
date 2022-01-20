@@ -1,18 +1,14 @@
 package model;
 
 import data.*;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import model.IA.IA;
 import model.IA.IAPathfind;
 import model.attack.AtkUpdater;
 import model.attack.Attack;
-import model.attack.Attacker;
 import model.attack.BasiqueAttacker;
 import model.collisions.CollisioneurCarre;
 import model.deplacement.DeplacerBasique;
-import model.deplacement.DeplacerEnnemie;
 import model.deplacement.Deplaceur;
 import model.entities.*;
 import model.maps.Map;
@@ -22,20 +18,28 @@ import java.util.*;
 
 public class Manager {
 
+    //liste des touches appuyées
     private HashSet<KeyCode> listeTouches = new HashSet<KeyCode>();
+    //dictionnaire des méthodes à effectuer pour certaines touches
     private Hashtable<KeyCode, String> keyEvents = new Hashtable<KeyCode, String>();
+    //dictionnaire précédent avec les clés et valeurs inversées
     private Hashtable<String, KeyCode> reversedKeyEvents = new Hashtable<String, KeyCode>();
+    //carte actuelle
     private Map map;
+    //joueur actuel
     private Joueur joueur;
+    //boucle du joueur
     private Loop beep;
+    //boucle des ennemis
     private Loop beepEnnemi;
+    //numéro du niveau
     private Niveau lvl;
-    //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
         init();
     }
 
+    //charge le premier niveau et les controles
     public void init (){
         lvl = new Niveau1();
         lvl.getLast().setNiveauSuivant(new Niveau2());
@@ -58,6 +62,7 @@ public class Manager {
         initLoop();
     }
 
+    //instancie la boucle de jeu
     public void initLoop (){
         beep = new Loop(50);
         beepEnnemi = new Loop(200);
@@ -94,8 +99,8 @@ public class Manager {
         reversedKeyEvents.put(method,touche);
     }
 
+    //lit la liste des touches appuyées et en effectue les actions
     public void readKeys (){
-        joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
         for (Iterator<KeyCode> it = listeTouches.iterator(); it.hasNext(); ) {
             KeyCode touche = it.next();
             try {
@@ -103,96 +108,85 @@ public class Manager {
                 method.invoke(this);
             }
             catch (Exception e){
-                System.out.println(e+"\n");
             }
         }
     }
 
 
-
+    //appel le déplaceur pour déplacer le joueur à droite
     public void deplacerDroite () {
         Direction dir = new Direction(1,0);
-        //lastDir = dir;
         DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
-        System.out.println("déplacer Droite");
-        //lastDir = dir;
     }
 
+    //de meme à gauche
     public void deplacerGauche () {
         Direction dir = new Direction(-1,0);
-        //lastDir = dir;
         DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
-        System.out.println("déplacer Gauche");
     }
 
+    //de même en haut
     public void deplacerHaut () {
         Direction dir = new Direction(0,-1); //Pour une raison que je ne comprends si je met 1 ça decends au lieu de monter
-        //lastDir = dir;
         DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
-        System.out.println("déplacer Haut");
     }
 
+    //de même en bas
     public void deplacerBas () {
         Direction dir = new Direction(0,1); //Pour une raison que je ne comprends si je met -1 ça monte au lieu de decendre
-        //lastDir = dir;
         DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
         deplaceur.deplacer((Personnage)joueur, dir);
-        System.out.println("déplacer Bas");
     }
 
+    //appel l'attacker pour instancier une attaque
     public void attaqueHaut () {
-        System.out.println("attaque\n");
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0,-1 ));
         if (attaque != null) {
-            joueur.setCurrentAttack(attaque);
             map.addAttack(attaque);
         }
     }
 
+    //de meme en bas
      public void attaqueBas () {
-        System.out.println("attaque\n");
         if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut"))){
             return;
         }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(0, 1));
          if (attaque != null) {
-             joueur.setCurrentAttack(attaque);
              map.addAttack(attaque);
          }
     }
 
+    //de meme à gauche
       public void attaqueGauche () {
-        System.out.println("attaque\n");
           if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
               return;
           }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
           if (attaque != null) {
-              joueur.setCurrentAttack(attaque);
               map.addAttack(attaque);
           }
     }
 
+    //de meme à droite
      public void attaqueDroite () {
-        System.out.println("attaque\n");
          if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueGauche")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
              return;
          }
         BasiqueAttacker attacker = new BasiqueAttacker();
         Attack attaque = attacker.attack(joueur, new Direction(1, 0));
          if (attaque != null) {
-             joueur.setCurrentAttack(attaque);
              map.addAttack(attaque);
          }
     }
 
-
+    //appel le pathfincding et un déplaceur pour déplacer l'ennemi
     public void updateEnemi(){
         IA enemiIA = new IAPathfind();
         Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
@@ -205,7 +199,9 @@ public class Manager {
 
     }
 
+    //appel un déplaceur d'attaque pour déplacer les attaques
     public void updateAttaque(){
+        joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
         AtkUpdater updater = new AtkUpdater();
         updater.updateAttack(map);
     }
@@ -226,6 +222,7 @@ public class Manager {
         return beepEnnemi;
     }
 
+    //passe le niveau courant au niveau suivant
     public Boolean niveauSuivant (){
         if (lvl.getNiveauSuivant() != null) {
             map.removeAll();
@@ -239,22 +236,10 @@ public class Manager {
         return false;
     }
 
+    //arrête les boucles
     public void stopBoucle(){
         beep.interrupt();
         beepEnnemi.interrupt();
     }
 
-
-
-
-    /*
-//POINTS
-    public int getPoints(){ return points.get(); }
-
-    public void setPoints(int points) {this.points.set(points); }
-
-    public IntegerProperty getPointsProperty() {return points;}
-    //POINTS
-
-     */
 }

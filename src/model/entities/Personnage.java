@@ -5,25 +5,24 @@ import javafx.beans.property.SimpleIntegerProperty;
 import model.attack.Attack;
 import model.attack.AttackPattern;
 
-public abstract class Personnage extends Entite { //point d'extensabilité
+//classe métier Personnage
+public abstract class Personnage extends Entite {
+    //multiplie les dégats des attaques
     private int atkPnt;
-    private int magPnt;
+    //points de vie maximums
     private int maxHP;
-    private int maxMana;
+    //points de vie actuels
     private IntegerProperty currentHP = new SimpleIntegerProperty();
-    private int currentMana;
+    //vitesse de déplacement
     private int speed;
+    //description de l'attaque à instancier quand il tire
     private AttackPattern attaque;
-    private Attack currentAttack;
 
-    public Personnage(int atkPnt, int magPnt, int maxHP, int maxMana, int currentHP, int currentMana, int speed, int xsize, int ysize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor) {
+    public Personnage(int atkPnt, int maxHP, int currentHP, int speed, int xsize, int ysize, int xpos, int ypos, String id, int redColor, int greenColor, int blueColor) {
         super(xsize,ysize,xpos,ypos, id);
         this.atkPnt = atkPnt;
-        this.magPnt = magPnt;
         this.maxHP = maxHP;
-        this.maxMana = maxMana;
         setCurrentHP(currentHP);
-        this.currentMana = currentMana;
         this.speed = speed;
     }
 
@@ -35,28 +34,12 @@ public abstract class Personnage extends Entite { //point d'extensabilité
         this.atkPnt = atkPnt;
     }
 
-    public int getMagPnt() {
-        return magPnt;
-    }
-
-    public void setMagPnt(int magPnt) {
-        this.magPnt = magPnt;
-    }
-
     public int getMaxHP() {
         return maxHP;
     }
 
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
-    }
-
-    public int getMaxMana() {
-        return maxMana;
-    }
-
-    public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
     }
 
     public int getCurrentHP() {
@@ -71,14 +54,6 @@ public abstract class Personnage extends Entite { //point d'extensabilité
         return currentHP;
     }
 
-    public int getCurrentMana() {
-        return currentMana;
-    }
-
-    public void setCurrentMana(int currentMana) {
-        this.currentMana = currentMana;
-    }
-
     public int getSpeed() {
         return speed;
     }
@@ -88,7 +63,7 @@ public abstract class Personnage extends Entite { //point d'extensabilité
     }
 
     public String toString(){
-        return "atk : "+atkPnt+", mag : "+magPnt+", max hp : "+maxHP+", max mana : "+maxMana+", current hp : "+currentHP+", current mana : "+currentMana+", speed : "+speed;
+        return "atk : "+atkPnt+", max hp : "+maxHP+", current hp : "+currentHP+", speed : "+speed;
     }
 
     public void setAttaque(AttackPattern attaque) {
@@ -97,14 +72,6 @@ public abstract class Personnage extends Entite { //point d'extensabilité
 
     public AttackPattern getAttaque() {
         return attaque;
-    }
-
-    public Attack getCurrentAttack() {
-        return currentAttack;
-    }
-
-    public void setCurrentAttack(Attack currentAttack) {
-        this.currentAttack = currentAttack;
     }
 
 }

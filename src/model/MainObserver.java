@@ -11,6 +11,7 @@ public class MainObserver implements Observer{
         this.manager = manager;
     }
 
+    //demande au manager de lire les touches appuyées
     @Override
     public void update () {
         Platform.runLater(()->{

@@ -3,8 +3,11 @@ package model.entities;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+//classe métier Position qui représente la position d'une entité
 public class Position {
+    //position horizontale
     private final IntegerProperty xPos = new SimpleIntegerProperty();
+    //position verticale
     private final IntegerProperty yPos = new SimpleIntegerProperty();
 
     public Position(int xPos, int yPos){
