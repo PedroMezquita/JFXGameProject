@@ -1,14 +1,15 @@
 package model.entities;
 
-public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
-    private int xSize; //les tailles sont à diviser par deux car on part du milieu de l'entité donc on fera -taille et + taille
-    private int ySize;
-    private Position position;  //attribut à garder pour la map et les props
-    private String id;
-    private double redColor;
-    private double blueColor;
-    private double greenColor;
-    private String sprite;
+//élément de base contenu dans une carte
+public abstract class Entite {
+    private int xSize; //taille horizontale
+    private int ySize; //taille verticale
+    private Position position;  //position de l'entité
+    private String id; //identifiant de l'entité
+    private double redColor; //valeur de rouge de l'entité
+    private double blueColor; //valeur de vert de l'entité
+    private double greenColor; //valeur de bleu de l'entité
+    private String sprite; //image
 
     public Entite(int xSize, int ySize, int xpos, int ypos, String id){
         this.xSize = xSize;
@@ -68,10 +69,8 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         this.blueColor = blueColor;
     }
 
-    //---TEST
     public String getSprite(){return sprite;}
 
     public void setSprite(String sprite) {this.sprite = sprite;}
-    //---TEST
 }
 

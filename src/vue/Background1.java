@@ -59,7 +59,6 @@ public class Background1 {
         ecran.getChildren().removeAll(ecran.getChildren());
         ecran.setBackground(back);
 
-
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
 
@@ -74,6 +73,7 @@ public class Background1 {
                 setButtons();
             }
         });
+
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
             //manager.stopBoucle();
             if(manager.niveauSuivant()) {
