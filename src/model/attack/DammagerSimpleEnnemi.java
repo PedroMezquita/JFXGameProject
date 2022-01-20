@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class DammagerSimpleEnnemi implements DamagerEnnemi{
 
-    private Manager manager;
 
 
     @Override
