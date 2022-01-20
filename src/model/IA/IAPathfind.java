@@ -1,15 +1,9 @@
 package model.IA;
 
-import com.sun.nio.sctp.SendFailedNotification;
 import model.Direction;
 import model.attack.Attack;
 import model.attack.BasiqueAttacker;
 import model.collisions.CollisioneurVisionEnnemi;
-import model.deplacement.DeplacerEnnemie;
-import model.deplacement.Deplaceur;
-import model.entities.Ennemi;
-import model.entities.Entite;
-import model.entities.Joueur;
 import model.entities.Personnage;
 import model.maps.Map;
 

@@ -15,13 +15,9 @@ public class DammagerSimpleEnnemi implements DamagerEnnemi{
         for (Personnage pers : personnage) {
             pers.setCurrentHP(pers.getCurrentHP() - atk.getDegat());
             atk.setLifeTime(1);
-            System.out.println("Auch ça pique");
-            System.out.println(atk.getDegat());
             if (pers.getCurrentHP() <= 0) {
                 map.removeEntity(pers);
-                System.out.println("GAME OVER");
             }
-            map.removeAttack(atk);
         }
     }
 }

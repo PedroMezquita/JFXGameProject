@@ -1,39 +1,24 @@
 package vue;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
-import javafx.util.converter.NumberStringConverter;
 import model.Manager;
 import model.entities.*;
 import launch.Launcher;
 import model.maps.Map;
-import model.Observer;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-
+//code-behind de Background1.fxml
 public class Background1 {
-/*
-    @FXML
-    public Circle EnnemiIGuess;
 
-    @FXML
-    private Group groupe;
-*/
     @FXML
     private Pane ecran;
 
@@ -52,6 +37,7 @@ public class Background1 {
         setUp();
     }
 
+    //charge la map actuelle du manager
     public void setUp (){
         Image img = new Image(manager.getMap().getImage());
         BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -94,19 +80,7 @@ public class Background1 {
 
     }
 
-
-
-            /*
-            //POINTS
-
-            TextField txt = new TextField();
-            txt.textProperty().bindBidirectional(manager.getPointsProperty(), new NumberStringConverter());
-            ecran.getChildren().add(txt);
-            //POINTS
-
-             */
-
-
+    //charge une entité dans la vue
     public void loadEntity(Entite entity){
         if (entity.getSprite() != null) {
             String url = entity.getSprite();
@@ -130,6 +104,7 @@ public class Background1 {
         }
     }
 
+    //met à jour la vue à partir d'une carte
     public void updateMap (Map map){
         for (Entite entity : map.getRemovedEntities()) {
             Node n = ecran.lookup("#"+entity.getId());
@@ -142,6 +117,7 @@ public class Background1 {
         }
     }
 
+    //créer les boutons recommencer et quitter
     public void setButtons (){
 
         Button restart = new Button("recommencer");
@@ -162,32 +138,16 @@ public class Background1 {
         quitter.setLayoutY(250);
     }
 
+    //fait recommencer la partie
     public void recommencer (){
         manager.init();
         setUp();
         //manager.startBoucle();
     }
 
+    //ferme le jeu
     public void quitter (){
         Launcher.getStage().close();
     }
-
-    //on rajoute pas des trucs dans le modèle depuis la vue.
-/*
-    @FXML
-    public Direction detectDirection(Direction dir){
-        System.out.println("direction");
-        Stage stage = Launcher.getStage();
-        Scene sc = stage.getScene();
-        sc.setOnKeyPressed((EventHandler) event -> {
-
-
-        });
-
-        return (Direction) null;
-    }
-*/
-
-
 
 }
