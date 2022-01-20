@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="mezquita_duteyrat_javafx">
+    <output-path>$PROJECT_DIR$/out/artifacts/mezquita_duteyrat_javafx</output-path>
+    <root id="root">
+      <element id="archive" name="mezquita_duteyrat_javafx.jar">
+        <element id="module-output" name="mezquita_duteyrat_javafx" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mezquita_duteyrat_javafx:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mezquita_duteyrat_javafx_jar</output-path>
+    <root id="archive" name="mezquita_duteyrat_javafx.jar">
+      <element id="module-output" name="mezquita_duteyrat_javafx" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/src.zip" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/share/openjfx/lib/javafx.graphics.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
