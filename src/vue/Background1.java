@@ -41,40 +41,15 @@ public class Background1 {
 
 
     public void initialize() {
-        //updateMap(manager.getMap());
-        /*
-        manager.getJoueur().getPos().xPosProperty().addListener(xProperty -> {
-        //    Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());
-
-            Rectangle rec = (Rectangle) ecran.getChildren().get(0); //vu que la position du joueur dans le stub est 0 il sera toujours en tete de liste et donc ajouté en premier
-            rec.setX(manager.getJoueur().getPos().getxPos());
-        });
-        manager.getJoueur().getPos().yPosProperty().addListener(yProperty -> {
-        //    Rectangle rec = (Rectangle) Launcher.getStage().getScene().lookup(Launcher.getManager().getJoueur().getId());//Launcher.getManager().getJoueur().getId() Donne "joueur", getName() = "mec"
-
-            Rectangle rec = (Rectangle) ecran.getChildren().get(0); //vu que la position du joueur dans le stub est 0 il sera toujours en tete de liste et donc ajouté en premier
-            rec.setY(manager.getJoueur().getPos().getyPos()); //Il detecte les positions inverses
-        });
-        */
-        //perso = new Rectangle(manager.getJoueur().getxSize(), manager.getJoueur().getySize());
-        //ecran.getChildren().add(perso);
-
-
-
-//POINTS
-        /*
-        manager.getMap().nbEnnemisProperty().addListener(nbEnemis ->{
-            manager.setPoints(manager.getPoints()+1);
-
-        });
-//POINTS
-
-         */
-        setUp();
+        ecran.setPrefWidth(500);
+        ecran.setPrefHeight(500);
+        ecran.setMinHeight(500);
+        ecran.setMinWidth(500);
+        ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
+        ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_RELEASED, Event -> {manager.removeTouche(Event.getCode());});
-
-
+        setUp();
     }
 
     public void setUp (){
@@ -83,12 +58,7 @@ public class Background1 {
         Background back = new Background(backImg);
         ecran.getChildren().removeAll(ecran.getChildren());
         ecran.setBackground(back);
-        ecran.setPrefWidth(500);
-        ecran.setPrefHeight(500);
-        ecran.setMinHeight(500);
-        ecran.setMinWidth(500);
-        ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
-        ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
+
 
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
@@ -107,9 +77,7 @@ public class Background1 {
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
             //manager.stopBoucle();
             if(manager.niveauSuivant()) {
-                manager.stopBoucle();
                 setUp();
-                manager.initLoop();
                 //manager.startBoucle();
             }
             else{
