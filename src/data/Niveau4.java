@@ -6,13 +6,12 @@ import model.entities.Joueur;
 import model.entities.Personnage;
 import model.entities.Props;
 import model.maps.Map;
-import model.maps.TestMap;
 
 public class Niveau4 extends Niveau{
 
     @Override
     public Map load() {
-        Map map = new TestMap();
+        Map map = new Map();
         Props obstacle1 = new Props(500,10,0,0,"Mur haut");
         obstacle1.setRGB(0,0,0);
         obstacle1.setSprite("TemplateWall.png");

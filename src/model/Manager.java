@@ -30,22 +30,10 @@ public class Manager {
     private Loop beep;
     private Loop beepEnnemi;
     private Niveau lvl;
-    /*
-//POINTS
-    private IntegerProperty points = new SimpleIntegerProperty();
-    //POINTS
-
-     */
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
         init();
-        /*
-//POINTS
-        points.set(0);
-        //POINTS
-
-         */
     }
 
     public void init (){

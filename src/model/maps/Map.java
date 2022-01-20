@@ -9,16 +9,14 @@ import model.entities.Joueur;
 
 import java.util.ArrayList;
 
-public abstract class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
+public class Map {  //Ce ne serais une meilleure idée de mettre map dans la vue ? en vrai oui, mais pour l'instant cela ne change pas de masses
     private ArrayList<Entite> allEntities = new ArrayList<Entite>();//elle contient la liste des entités
     private ArrayList<Entite> removedEntities = new ArrayList<Entite>();
     private ArrayList<Entite> newEntities = new ArrayList<Entite>();
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     private IntegerProperty nbEntite = new SimpleIntegerProperty();
-    //POINTS
     private IntegerProperty nbEnemis = new SimpleIntegerProperty(0);
-    //POINTS
 
     private int width;
     private int height;
