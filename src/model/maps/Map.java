@@ -53,7 +53,7 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     }
 
     public ArrayList<Ennemi> getEnnemis(){
-        return allEnemi;
+        return (ArrayList<Ennemi>) allEnemi.clone();
     }
 
     public int getNbEntite() {

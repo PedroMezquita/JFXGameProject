@@ -5,9 +5,9 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
     private int ySize;
     private Position position;  //attribut à garder pour la map et les props
     private String id;
-    private int redColor;
-    private int blueColor;
-    private int greenColor;
+    private double redColor;
+    private double blueColor;
+    private double greenColor;
     private String sprite;
 
     public Entite(int xSize, int ySize, int xpos, int ypos, String id){
@@ -38,31 +38,31 @@ public abstract class Entite {  //Je pense que le nom pourrais aussi etre Size
         return id;
     }
 
-    public int getRedColor() {
+    public double getRedColor() {
         return redColor;
     }
 
-    public int getGreenColor() {
+    public double getGreenColor() {
         return greenColor;
     }
 
-    public int getBlueColor() {
+    public double getBlueColor() {
         return blueColor;
     }
 
-    public void setRedColor(int redColor) {
+    public void setRedColor(float redColor) {
         this.redColor = redColor;
     }
 
-    public void setGreenColor(int greenColor) {
+    public void setGreenColor(float greenColor) {
         this.greenColor = greenColor;
     }
 
-    public void setBlueColor(int blueColor) {
+    public void setBlueColor(float blueColor) {
         this.blueColor = blueColor;
     }
 
-    public  void setRGB (int redColor,int greenColor,int blueColor){
+    public  void setRGB (double redColor,double greenColor,double blueColor){
         this.redColor = redColor;
         this.greenColor = greenColor;
         this.blueColor = blueColor;

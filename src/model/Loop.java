@@ -41,6 +41,6 @@ public class Loop extends Thread{
     }
 
     public ArrayList<Observer> getListeObs() {
-        return listeObs;
+        return (ArrayList<Observer>) listeObs.clone();
     }
 }

@@ -8,9 +8,9 @@ public class AttackPattern {
     private String id;
     private int cooldown;
     private int currentcooldown;
-    private int redColor;
-    private int greenColor;
-    private int blueColor;
+    private double redColor;
+    private double greenColor;
+    private double blueColor;
     private String sprite;
 
     public AttackPattern (int lifeTime, int degats, int xSize, int ySize, String id, int cooldown){
@@ -43,21 +43,21 @@ public class AttackPattern {
         return id;
     }
 
-    public void setRGB(int redColor, int greenColor, int blueColor){
+    public void setRGB(double redColor, double greenColor, double blueColor){
         this.redColor = redColor;
         this.greenColor = greenColor;
         this.blueColor = blueColor;
     }
 
-    public int getRedColor() {
+    public double getRedColor() {
         return redColor;
     }
 
-    public int getGreenColor() {
+    public double getGreenColor() {
         return greenColor;
     }
 
-    public int getBlueColor() {
+    public double getBlueColor() {
         return blueColor;
     }
 

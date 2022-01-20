@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
@@ -23,6 +24,7 @@ import model.Observer;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javafx.scene.control.Button;
 
 public class Background1 {
 /*
@@ -61,30 +63,7 @@ public class Background1 {
         ecran.setPrefHeight(500);
         ecran.setMinHeight(500);
         ecran.setMinWidth(500);
-        updateMap(manager.getMap());
-        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
 
-        manager.getJoueur().currentHPProperty().addListener(pv -> {
-            if (manager.getJoueur().getCurrentHP() <= 0) {
-                manager.getBeep().interrupt();
-                manager.getBeepEnnemi().interrupt();
-                Text txt = new Text("GAME OVER");
-                txt.setTextAlignment(TextAlignment.CENTER);
-                ecran.getChildren().add(txt);
-                txt.setX(ecran.getWidth() / 2);
-                txt.setY(ecran.getHeight() / 2);
-            }
-        });
-        manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
-                                                                            manager.getBeep().interrupt();
-                                                                            manager.getBeepEnnemi().interrupt();
-                                                                            Text txt = new Text("Victoire");
-                                                                            txt.setTextAlignment(TextAlignment.CENTER);
-                                                                            ecran.getChildren().add(txt);
-                                                                            txt.setX(ecran.getWidth()/2);
-                                                                            txt.setY(ecran.getHeight()/2);
-                                                                        }
-        });
 //POINTS
         /*
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis ->{
@@ -98,10 +77,41 @@ public class Background1 {
         ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_RELEASED, Event -> {manager.removeTouche(Event.getCode());});
-
+        setUp();
 
     }
 
+    public void setUp (){
+        updateMap(manager.getMap());
+        manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
+
+        manager.getJoueur().currentHPProperty().addListener(pv -> {
+            if (manager.getJoueur().getCurrentHP() <= 0) {
+                //manager.stopBoucle();
+                Text txt = new Text("GAME OVER");
+                txt.setTextAlignment(TextAlignment.CENTER);
+                ecran.getChildren().add(txt);
+                txt.setX(ecran.getWidth() / 2);
+                txt.setY(ecran.getHeight() / 2);
+            }
+        });
+        manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
+            //manager.stopBoucle();
+            if(manager.niveauSuivant()) {
+                updateMap(manager.getMap());
+                //manager.startBoucle();
+            }
+            else{
+                Text txt = new Text("Victoire : vous avez fini le jeu");
+                txt.setTextAlignment(TextAlignment.CENTER);
+                ecran.getChildren().add(txt);
+                txt.setX(150);
+                txt.setY(200);
+                setButtons();
+            }
+        }
+        });
+    }
 
 
 
@@ -152,6 +162,24 @@ public class Background1 {
             loadEntity(entite);
             map.handleEntity(entite);
         }
+    }
+
+    public void setButtons (){
+        Button restart = new Button("recommencer");
+        restart.setOnAction(restartFire -> {
+            recommencer();
+        });
+        ecran.getChildren().add(restart);
+        restart.setLayoutX(150);
+        restart.setLayoutY(250);
+    }
+
+    public void recommencer (){
+        manager.stopBoucle();
+        manager.init();
+        ecran.getChildren().removeAll(ecran.getChildren());
+        setUp();
+        //manager.startBoucle();
     }
 
 

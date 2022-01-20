@@ -1,5 +1,6 @@
 package model;
 
+import data.Niveau;
 import data.Niveau1;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -28,9 +29,9 @@ public class Manager {
     private Hashtable<String, KeyCode> reversedKeyEvents = new Hashtable<String, KeyCode>();
     private Map map;
     private Joueur joueur;
-    private ArrayList<Ennemi> listeEnemis;
     private Loop beep;
     private Loop beepEnnemi;
+    private Niveau lvl;
     /*
 //POINTS
     private IntegerProperty points = new SimpleIntegerProperty();
@@ -40,9 +41,19 @@ public class Manager {
     //go rebrand le jeu en simulateur de pompier (idée de bouhours)
 
     public Manager (){
-        map = new Niveau1().load();
+        init();
+        /*
+//POINTS
+        points.set(0);
+        //POINTS
+
+         */
+    }
+
+    public void init (){
+        lvl = new Niveau1();
+        map = lvl.load();
         joueur = map.getJoueur();
-        listeEnemis = map.getEnnemis();
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");
         addKeyEvent(KeyCode.UP, "deplacerHaut");
@@ -55,18 +66,11 @@ public class Manager {
         beep = new Loop(50);
         beepEnnemi = new Loop(200);
 
-        beep.attacher(new GameOverObserver(this));
         beep.attacher(new MainObserver(this));
 
         beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
         beepEnnemi.start();
-        /*
-//POINTS
-        points.set(0);
-        //POINTS
-
-         */
     }
 
     public Map getMap() {
@@ -196,7 +200,7 @@ public class Manager {
     public void updateEnemi(){
         IA enemiIA = new IAPathfind();
         Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
-        for (Personnage ennemi : listeEnemis){
+        for (Personnage ennemi : map.getEnnemis()){
             ennemi.getAttaque().setCurrentcooldown(ennemi.getAttaque().getCurrentcooldown()-1);
             Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
             deplace.deplacer(ennemi, new Direction(dir.getxDir(),0));
@@ -218,13 +222,6 @@ public class Manager {
         this.joueur = joueur;
     }
 
-    public void gameOver(){
-
-        beepEnnemi.interrupt();
-        beep.interrupt();
-
-    }
-
     public Loop getBeep() {
         return beep;
     }
@@ -232,6 +229,23 @@ public class Manager {
     public Loop getBeepEnnemi() {
         return beepEnnemi;
     }
+
+    public Boolean niveauSuivant (){
+        if (lvl.getNiveauSuivant() != null) {
+            lvl = lvl.getNiveauSuivant();
+            map = lvl.load();
+            return true;
+        }
+        return false;
+    }
+
+    public void stopBoucle(){
+        beep.interrupt();
+        beepEnnemi.interrupt();
+    }
+
+
+
     /*
 //POINTS
     public int getPoints(){ return points.get(); }
