@@ -65,6 +65,10 @@ public class Manager {
         addKeyEvent(KeyCode.Q, "attaqueGauche");
         addKeyEvent(KeyCode.D, "attaqueDroite");
 
+        initLoop();
+    }
+
+    public void initLoop (){
         beep = new Loop(50);
         beepEnnemi = new Loop(200);
 
@@ -237,6 +241,9 @@ public class Manager {
             map.removeAll();
             lvl = lvl.getNiveauSuivant();
             map = lvl.load();
+            map.setHeight(500);
+            map.setWidth(500);
+            joueur = map.getJoueur();
             return true;
         }
         return false;

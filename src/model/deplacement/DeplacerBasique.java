@@ -21,11 +21,11 @@ public class DeplacerBasique implements Deplaceur {
             pers.setPosition(pers.getPos().getxPos() + verticalMvmt, pers.getPos().getyPos() + horizontalMvmt);
         }
         else {
-            int tmpSpeed = pers.getSpeed();
-            //récursivité qui permet de se coller au mur histoire de rendre le déplacement moins galère pour le joueur
-            pers.setSpeed(tmpSpeed-1);
-            deplacer(pers,dir);
-            pers.setSpeed(tmpSpeed);
+                int tmpSpeed = pers.getSpeed();
+                //récursivité qui permet de se coller au mur histoire de rendre le déplacement moins galère pour le joueur
+                pers.setSpeed(tmpSpeed - 1);
+                deplacer(pers, dir);
+                pers.setSpeed(tmpSpeed);
         }
     }
 

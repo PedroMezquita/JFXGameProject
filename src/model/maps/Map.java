@@ -74,6 +74,8 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public void setHeight(int height) {
         this.height = height;
+        if (this.height < 500)
+            this.height = 500;
     }
 
     public int getWidth() {
@@ -82,6 +84,8 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
 
     public void setWidth(int width) {
         this.width = width;
+        if (this.width < 500)
+            this.width = 500;
     }
 
     public void removeEntity (Entite entity){

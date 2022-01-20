@@ -59,10 +59,7 @@ public class Background1 {
         //perso = new Rectangle(manager.getJoueur().getxSize(), manager.getJoueur().getySize());
         //ecran.getChildren().add(perso);
 
-        ecran.setPrefWidth(500);
-        ecran.setPrefHeight(500);
-        ecran.setMinHeight(500);
-        ecran.setMinWidth(500);
+
 
 //POINTS
         /*
@@ -73,11 +70,10 @@ public class Background1 {
 //POINTS
 
          */
-        ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
-        ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
+        setUp();
         Launcher.getStage().addEventFilter(KeyEvent.KEY_PRESSED, Event -> {manager.addTouche(Event.getCode());});
         Launcher.getStage().addEventFilter(KeyEvent.KEY_RELEASED, Event -> {manager.removeTouche(Event.getCode());});
-        setUp();
+
 
     }
 
@@ -87,6 +83,13 @@ public class Background1 {
         Background back = new Background(backImg);
         ecran.getChildren().removeAll(ecran.getChildren());
         ecran.setBackground(back);
+        ecran.setPrefWidth(500);
+        ecran.setPrefHeight(500);
+        ecran.setMinHeight(500);
+        ecran.setMinWidth(500);
+        ecran.widthProperty().addListener(largeur -> {manager.getMap().setWidth((int) ecran.getWidth());});
+        ecran.heightProperty().addListener(largeur -> {manager.getMap().setHeight((int) ecran.getHeight());});
+
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
 
@@ -104,7 +107,9 @@ public class Background1 {
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
             //manager.stopBoucle();
             if(manager.niveauSuivant()) {
+                manager.stopBoucle();
                 setUp();
+                manager.initLoop();
                 //manager.startBoucle();
             }
             else{
@@ -117,6 +122,7 @@ public class Background1 {
             }
         }
         });
+
     }
 
 
