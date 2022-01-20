@@ -14,7 +14,6 @@ public class CollisioneurAttaqueEnnemi implements CollisioneurAttaque{
 
     private Damager dmg = new DamagerSimple();
 
-    //Ceci est provisionnel, faudrais dedier une journée a optimiser ce code la
     @Override
     public void hitTest(Attack atk, Map map) {
 
