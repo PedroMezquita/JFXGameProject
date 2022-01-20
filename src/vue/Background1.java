@@ -3,6 +3,7 @@ package vue;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,6 @@ import model.Observer;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javafx.scene.control.Button;
 
 public class Background1 {
 /*
@@ -82,6 +82,10 @@ public class Background1 {
     }
 
     public void setUp (){
+        Image img = new Image(manager.getMap().getImage());
+        BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background back = new Background(backImg);
+        ecran.setBackground(back);
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
 
@@ -93,6 +97,7 @@ public class Background1 {
                 ecran.getChildren().add(txt);
                 txt.setX(ecran.getWidth() / 2);
                 txt.setY(ecran.getHeight() / 2);
+                setButtons();
             }
         });
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
@@ -147,10 +152,6 @@ public class Background1 {
             rec.setId(entity.getId());
             ecran.getChildren().add(rec);
         }
-        Image img = new Image("TemplateBackground.png");
-        BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Background back = new Background(backImg);
-        ecran.setBackground(back);
     }
 
     public void updateMap (Map map){
@@ -165,6 +166,7 @@ public class Background1 {
     }
 
     public void setButtons (){
+        /*
         Button restart = new Button("recommencer");
         restart.setOnAction(restartFire -> {
             recommencer();
@@ -172,6 +174,15 @@ public class Background1 {
         ecran.getChildren().add(restart);
         restart.setLayoutX(150);
         restart.setLayoutY(250);
+
+         */
+        Button quitter = new Button("quitter");
+        quitter.setOnAction(quitterFire -> {
+            quitter();
+        });
+        ecran.getChildren().add(quitter);
+        quitter.setLayoutX(250);
+        quitter.setLayoutY(250);
     }
 
     public void recommencer (){
@@ -182,6 +193,9 @@ public class Background1 {
         //manager.startBoucle();
     }
 
+    public void quitter (){
+        Launcher.getStage().close();
+    }
 
     //on rajoute pas des trucs dans le modèle depuis la vue.
 /*

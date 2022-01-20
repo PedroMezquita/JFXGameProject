@@ -8,7 +8,7 @@ import model.entities.Props;
 import model.maps.Map;
 import model.maps.TestMap;
 
-public class Niveau1 extends Niveau{
+public class Niveau2 extends Niveau{
 
     @Override
     public Map load() {
@@ -31,18 +31,21 @@ public class Niveau1 extends Niveau{
         map.addEntity(obstacle4);
         Personnage joueur = new Joueur(1,1,10,10,10,10,5,"mec", /* 21*/ 41, /* 21*/41,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
         joueur.setSprite("TemplateCharacter.png");
-        AttackPattern atqJoueur = new AttackPattern(25, 2, 10, 25, "trait", 50);
-        atqJoueur.setRGB(0.5,0.5,1);
+        AttackPattern atqJoueur = new AttackPattern(10, 1, 15, 15, "boule de feu", 10);
+        atqJoueur.setRGB(1,0,0);
         joueur.setAttaque(atqJoueur);
         map.addEntity(joueur);
-        Ennemi ennemi = new Ennemi(1,1,1,10,1,10,5, 15, 15, 250, 400, "ennemi1", 1,1,0);
+        Ennemi ennemi = new Ennemi(1,1,10,10,10,10,15, 50, 50, 200, 400, "ennemi1", 1,1,0);
         ennemi.setSprite("TemplateEnnemi.png");
-        AttackPattern atqEnemi = new AttackPattern(20,1,15,15,"slime",5);
+        AttackPattern atqEnemi = new AttackPattern(5,1,15,5,"slime",2);
         atqEnemi.setRGB(0,1,0);
         ennemi.setAttaque(atqEnemi);
         map.addEnemy(ennemi);
+        Ennemi ennemi2 = new Ennemi(1,1,10,10,10,10,15, 50, 50, 200, 400, "ennemi1", 1,1,0);
+        ennemi.setSprite("TemplateEnnemi.png");
+        ennemi2.setAttaque(atqEnemi);
+        map.addEnemy(ennemi2);
         map.setImage("TemplateBackground.png");
         return map;
     }
-
 }

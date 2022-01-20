@@ -152,4 +152,5 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
     public ArrayList<Entite> getNewEntities() {
         return (ArrayList<Entite>) newEntities.clone();
     }
+
 }

@@ -2,6 +2,7 @@ package model;
 
 import data.Niveau;
 import data.Niveau1;
+import data.Niveau2;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
@@ -52,6 +53,7 @@ public class Manager {
 
     public void init (){
         lvl = new Niveau1();
+        lvl.setNiveauSuivant(new Niveau2());
         map = lvl.load();
         joueur = map.getJoueur();
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
