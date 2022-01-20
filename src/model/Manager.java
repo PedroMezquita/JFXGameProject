@@ -234,6 +234,7 @@ public class Manager {
 
     public Boolean niveauSuivant (){
         if (lvl.getNiveauSuivant() != null) {
+            map.removeAll();
             lvl = lvl.getNiveauSuivant();
             map = lvl.load();
             return true;
@@ -245,6 +246,7 @@ public class Manager {
         beep.interrupt();
         beepEnnemi.interrupt();
     }
+
 
 
 

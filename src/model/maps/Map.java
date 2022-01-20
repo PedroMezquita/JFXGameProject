@@ -153,4 +153,10 @@ public abstract class Map {  //Ce ne serais une meilleure idée de mettre map da
         return (ArrayList<Entite>) newEntities.clone();
     }
 
+    public void removeAll(){
+        allEnemi.removeAll(allEnemi);
+        allAttacks.removeAll(allAttacks);
+        allEntities.removeAll(allEntities);
+        setNbEntite(0);
+    }
 }

@@ -85,6 +85,7 @@ public class Background1 {
         Image img = new Image(manager.getMap().getImage());
         BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background back = new Background(backImg);
+        ecran.getChildren().removeAll(ecran.getChildren());
         ecran.setBackground(back);
         updateMap(manager.getMap());
         manager.getMap().nbEntiteProperty().addListener(nbEntite ->{updateMap(manager.getMap());});
@@ -103,7 +104,7 @@ public class Background1 {
         manager.getMap().nbEnnemisProperty().addListener(nbEnemis -> {  if(manager.getMap().getNbEnnemis() <= 0){
             //manager.stopBoucle();
             if(manager.niveauSuivant()) {
-                updateMap(manager.getMap());
+                setUp();
                 //manager.startBoucle();
             }
             else{
@@ -188,7 +189,6 @@ public class Background1 {
     public void recommencer (){
         manager.stopBoucle();
         manager.init();
-        ecran.getChildren().removeAll(ecran.getChildren());
         setUp();
         //manager.startBoucle();
     }

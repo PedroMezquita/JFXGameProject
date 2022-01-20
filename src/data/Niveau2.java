@@ -41,8 +41,8 @@ public class Niveau2 extends Niveau{
         atqEnemi.setRGB(0,1,0);
         ennemi.setAttaque(atqEnemi);
         map.addEnemy(ennemi);
-        Ennemi ennemi2 = new Ennemi(1,1,10,10,10,10,15, 50, 50, 200, 400, "ennemi1", 1,1,0);
-        ennemi.setSprite("TemplateEnnemi.png");
+        Ennemi ennemi2 = new Ennemi(1,1,10,10,10,10,15, 50, 50, 300, 400, "ennemi1", 1,1,0);
+        ennemi2.setSprite("TemplateEnnemi.png");
         ennemi2.setAttaque(atqEnemi);
         map.addEnemy(ennemi2);
         map.setImage("TemplateBackground.png");
