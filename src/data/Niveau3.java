@@ -35,7 +35,7 @@ public class Niveau3 extends Niveau{
         atqJoueur.setRGB(1,0.5,0.5);
         joueur.setAttaque(atqJoueur);
         map.addEntity(joueur);
-        Ennemi ennemi = new Ennemi(5,1,1,10,50,10,2, 25, 25, 250, 400, "ennemi1", 1,1,0);
+        Ennemi ennemi = new Ennemi(5,1,50,10,50,10,2, 25, 25, 250, 400, "ennemi1", 1,1,0);
         ennemi.setSprite("TemplateEnnemi.png");
         AttackPattern atqEnemi = new AttackPattern(100,5,100,15,"slime",50);
         atqEnemi.setRGB(1,1,0);

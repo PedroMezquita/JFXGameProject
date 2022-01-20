@@ -21,6 +21,7 @@ public class DammagerSimpleEnnemi implements DamagerEnnemi{
                 map.removeEntity(pers);
                 System.out.println("GAME OVER");
             }
+            map.removeAttack(atk);
         }
     }
 }
