@@ -65,7 +65,7 @@ public class Background1 {
 
         manager.getJoueur().currentHPProperty().addListener(pv -> {
             if (manager.getJoueur().getCurrentHP() <= 0) {
-                //manager.stopBoucle();
+                manager.stopBoucle();
                 Text txt = new Text("GAME OVER");
                 txt.setTextAlignment(TextAlignment.CENTER);
                 ecran.getChildren().add(txt);
@@ -81,6 +81,7 @@ public class Background1 {
                 //manager.startBoucle();
             }
             else{
+                manager.stopBoucle();
                 Text txt = new Text("Victoire : vous avez fini le jeu");
                 txt.setTextAlignment(TextAlignment.CENTER);
                 ecran.getChildren().add(txt);
@@ -131,7 +132,8 @@ public class Background1 {
 
     public void updateMap (Map map){
         for (Entite entity : map.getRemovedEntities()) {
-            ecran.getChildren().remove(ecran.lookup("#"+entity.getId()));
+            Node n = ecran.lookup("#"+entity.getId());
+            ecran.getChildren().remove(n);
             map.eraseEntity(entity);
         }
         for (Entite entite : map.getNewEntities()){
@@ -141,7 +143,7 @@ public class Background1 {
     }
 
     public void setButtons (){
-        /*
+
         Button restart = new Button("recommencer");
         restart.setOnAction(restartFire -> {
             recommencer();
@@ -150,7 +152,7 @@ public class Background1 {
         restart.setLayoutX(150);
         restart.setLayoutY(250);
 
-         */
+
         Button quitter = new Button("quitter");
         quitter.setOnAction(quitterFire -> {
             quitter();
@@ -161,7 +163,6 @@ public class Background1 {
     }
 
     public void recommencer (){
-        manager.stopBoucle();
         manager.init();
         setUp();
         //manager.startBoucle();

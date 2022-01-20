@@ -18,4 +18,11 @@ public abstract class Niveau implements Loader{
     public void setNiveauSuivant(Niveau niveauSuivant) {
         this.niveauSuivant = niveauSuivant;
     }
+
+    public Niveau getLast () {
+        if (niveauSuivant == null){
+            return this;
+        }
+        return niveauSuivant.getLast();
+    }
 }

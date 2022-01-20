@@ -2,6 +2,7 @@ package model.attack;
 
 import model.Direction;
 import model.entities.Personnage;
+import model.maps.Map;
 
 public class EnnemiAttacker implements Attacker{
     @Override
